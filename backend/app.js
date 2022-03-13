@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors')
 const mongoose = require('mongoose');
 require('dotenv').config();
-
 // import User controllers
 const { CreateAccount, ConnexionAccount } = require('./controllers/user')
 
