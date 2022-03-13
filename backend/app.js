@@ -3,9 +3,11 @@ const app = express();
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
 const cors = require('cors')
-const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 require('dotenv').config();
+
+// import User controllers
+const { CreateAccount, ConnexionAccount } = require('./controllers/user')
 
 // initialisation body parser pour récupérer donné au format json
 app.use(bodyParser.json());
@@ -31,8 +33,9 @@ mongoose.connect(db_url, {
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 
-app.get('/', (req, res, next) => {
-    res.send('hey')
-})
+app.get('/create_account', CreateAccount)
+
+app.get('/connexion', ConnexionAccount)
+
 
 module.exports = app;
