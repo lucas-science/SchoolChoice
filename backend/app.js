@@ -37,4 +37,17 @@ app.get('/create_account', CreateAccount)
 app.get('/connexion', ConnexionAccount)
 
 
+
+/**
+ * Return if the email gived is valid or not.
+ * @param {String} email 
+ */
+
+app.get('/test', (req, res, next) => {
+    const { email } = req.body
+    console.log(isValideEmail(email))
+    res.sendStatus(200)
+})
+
+
 module.exports = app;
