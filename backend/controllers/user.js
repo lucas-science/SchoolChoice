@@ -5,7 +5,10 @@ const jwt = require('jsonwebtoken');
 // import models
 const User = require('../models/user');
 
-
+/**
+ * Return if the email gived is valid or not.
+ * @param {String} email 
+ */
 const isValideEmail = (email) => {
 
     const test = ['ac-strasbourg.fr',
