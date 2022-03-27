@@ -1,0 +1,493 @@
+{
+    "Fillieres": [{
+            "question": "Etes vous une personne travailleuse et serait tu prêt à travailler davantage ?",
+            "proSTI2D": false,
+            "proST2S": false,
+            "proGENERAUX": true
+        },
+        {
+            "question": "Aimez vous faire des traveaux en groupe ?",
+            "proSTI2D": true,
+            "proST2S": true,
+            "proGENERAUX": false
+        },
+        {
+            "question": "Avez vous eu les félicitations durant les trimestres précédents ?",
+            "proSTI2D": false,
+            "proST2S": false,
+            "proGENERAUX": true
+        },
+        {
+            "question": "Avez vous eu les encouragements durant les trimestres précédents ?",
+            "proSTI2D": true,
+            "proST2S": true,
+            "proGENERAUX": false
+        },
+        {
+            "question": "Etes vous une personne manuelle ?",
+            "proSTI2D": true,
+            "proST2S": true,
+            "proGENERAUX": false
+        },
+        {
+            "question": "Préférez vous faire des études longues (bac+5, bac+8) ?",
+            "proSTI2D": false,
+            "proST2S": false,
+            "proGENERAUX": true
+        },
+        {
+            "question": "Préférez vous faire des études courtes (bac+2, bac+3) ?",
+            "proSTI2D": true,
+            "proST2S": true,
+            "proGENERAUX": false
+        },
+        {
+            "question": "Est ce que tu comprends mieux en pratiquant ? ",
+            "proSTI2D": true,
+            "proST2S": true,
+            "proGENERAUX": false
+        },
+        {
+            "question": "Est ce que tu aimes bien la théorie ? ",
+            "proSTI2D": false,
+            "proST2S": false,
+            "proGENERAUX": true
+        },
+        {
+            "question": "Est ce que tu as un niveau d'abstraction élevé ? (bonne compréhenssion dans les matières scientifiques)",
+            "proSTI2D": false,
+            "proST2S": false,
+            "proGENERAUX": true
+        },
+        {
+            "question": "Est ce que vous aimez réaliser des projets techniques ? (construire des objets, dévelloper un programme informatique, etc)",
+            "proSTI2D": false,
+            "proST2S": false,
+            "proGENERAUX": false
+        },
+        {
+            "question": "Aimes tu le domaine de la santé ?",
+            "proSTI2D": false,
+            "proST2S": true,
+            "proGENERAUX": true
+        },
+        {
+            "question": "Aimes tu être en contact et aider les gens ?",
+            "proSTI2D": false,
+            "proST2S": true,
+            "proGENERAUX": false
+        },
+        {
+            "question": "Es tu intéressé par l'humain et son évolution au sein d'une société ? ",
+            "proSTI2D": false,
+            "proST2S": true,
+            "proGENERAUX": false
+        },
+        {
+            "question": "Veux tu te garder toutes les possibilités de poursuite d'étude ouvertes ?",
+            "proSTI2D": false,
+            "proST2S": false,
+            "proGENERAUX": true
+        },
+        {
+            "question": "Préfères tu concevoir ou créer les choses concrètement ?",
+            "proSTI2D": true,
+            "proST2S": false,
+            "proGENERAUX": false
+        },
+        {
+            "question": "Est ce que tu aimes lire ?",
+            "proSTI2D": false,
+            "proST2S": false,
+            "proGENERAUX": true
+        }
+
+    ],
+    "Specialitees": {
+        "general": [{
+                "question": "As-tu un esprit logique ? ",
+                "SI": true,
+                "Maths": true,
+                "NSI": true,
+                "PC": true,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "As-tu un haut niveau d’abstraction ?",
+                "SI": true,
+                "Maths": true,
+                "NSI": true,
+                "PC": true,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Aimes-tu chercher des solutions à un problème ? ",
+                "SI": true,
+                "Maths": true,
+                "NSI": true,
+                "PhysiqueChimie": true,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Te vois-tu ingénieur dans ta vie future ? ",
+                "SI": true,
+                "Maths": true,
+                "NSI": true,
+                "PhysiqueChimie": true,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": true,
+                "HGGSP": false
+            },
+            {
+                "question": "Est-ce que tu es rigoureux dans tes démonstrations/ raisonnements ? ",
+                "SI": true,
+                "Maths": true,
+                "NSI": true,
+                "PhysiqueChimie": true,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Veux-tu te tourner vers un domaine dans la santé ? ",
+                "SI": false,
+                "Maths": true,
+                "NSI": false,
+                "PhysiqueChimie": true,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": true,
+                "HGGSP": false
+            },
+            {
+                "question": "Est-ce que t’es un geek ?",
+                "SI": false,
+                "Maths": false,
+                "NSI": true,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Avez-vous déjà programmé dans votre vie ou souhaiteriez-vous apprendre (scratch ne compte pas) ? ",
+                "SI": true,
+                "Maths": false,
+                "NSI": true,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Es-tu à l’aise avec l’anglais ? ",
+                "SI": false,
+                "Maths": false,
+                "NSI": true,
+                "PhysiqueChimie": false,
+                "LLCER": true,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Aimes-tu travailler en équipe ? ",
+                "SI": true,
+                "Maths": false,
+                "NSI": true,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Aimes-tu travailler longtemps devant un PC ? ",
+                "SI": true,
+                "Maths": false,
+                "NSI": true,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Est-ce que tu veux travailler dans le numérique (développeur, data scientist, etc) ? ",
+                "SI": false,
+                "Maths": false,
+                "NSI": true,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Etes-vous pluridisciplinaire (Mécanique, Electronique, Convertisseur d’énergie, programmation) ",
+                "SI": true,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Aimes-tu analyser et développer sur un sujet ? ",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": true,
+                "SES": true,
+                "HLP": true,
+                "SVT": false,
+                "HGGSP": true
+            },
+            {
+                "question": "Est-ce que tu t’intéresses aux autres cultures ? ",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": true,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Est-ce que l’interaction envers les pays Anglo-Saxons t’intéresse ? ",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": true,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Est-ce que tu te vois utiliser l’anglais tous les jours dans ton métier futur ?",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": true,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            },
+            {
+                "question": "Est-ce que l’histoire et le monde qui t’entoure t’intéresse ? ",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": true
+            }, {
+                "question": "Est-ce que l’interaction géopolitique t’intéresse ?",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": true
+            }, {
+                "question": "Est-ce que les problématiques du monde moderne t’intéressent ?",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": false,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": true
+            }, {
+                "question": "Aime tu suivre l’actualité ? ",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": true,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": true
+            }, {
+                "question": "Est-ce que le domaine de la finance t’intéresse ? ",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": true,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": false
+            }, {
+                "question": "Est-ce que le droit t’intéresse ? ",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": true,
+                "HLP": false,
+                "SVT": false,
+                "HGGSP": true
+            }, {
+                "question": "Est-ce que tu aimes t’intéresser à des sujets abstrait auxquels le commun des mortels n’a pas de réponses claires ? ",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": false,
+                "HLP": true,
+                "SVT": false,
+                "HGGSP": false
+            }, {
+                "question": "Aimes-tu remettre les choses en question ? ",
+                "SI": false,
+                "Maths": false,
+                "NSI": false,
+                "PhysiqueChimie": false,
+                "LLCER": false,
+                "SES": false,
+                "HLP": true,
+                "SVT": false,
+                "HGGSP": false
+            }
+        ],
+        "STI2D": [{
+                "question": "Etes-vous attiré par l’architecture ?",
+                "AC": true,
+                "SIN": false,
+                "ITEC": false
+            },
+            {
+                "question": "L’informatique est un sujet qui vous intéresse ?",
+                "AC": false,
+                "SIN": true,
+                "ITEC": false
+            },
+            {
+                "question": "Préfères tu créer des choses concrètes ?",
+                "AC": false,
+                "SIN": false,
+                "ITEC": true
+            },
+            {
+                "question": "Préfères tu créer des choses concrètes ?",
+                "AC": false,
+                "SIN": false,
+                "ITEC": true
+            },
+            {
+                "question": "As-tu un esprit créatif ?",
+                "AC": true,
+                "SIN": false,
+                "ITEC": true
+            },
+            {
+                "question": "Les objets connectés et le domaine de l’embarqué t’intéresse ?",
+                "AC": false,
+                "SIN": true,
+                "ITEC": false
+            },
+            {
+                "question": "La modélisation 3D est un domaine qui t’intéresse ?",
+                "AC": false,
+                "SIN": false,
+                "ITEC": true
+            },
+            {
+                "question": "Aimes-tu l’électronique ?",
+                "AC": false,
+                "SIN": true,
+                "ITEC": false
+            },
+            {
+                "question": "Etes vous une personne curieuse qui sait chercher l’information ? ",
+                "AC": false,
+                "SIN": true,
+                "ITEC": false
+            },
+            {
+                "question": "Avez-vous un profil pluridisciplinaire (Mécanique, Electronique, Convertisseur d'énergie, programmation) ?",
+                "AC": false,
+                "SIN": true,
+                "ITEC": false
+            },
+            {
+                "question": "Te vois-tu travailler dans le domaine scientifiques et industriels ?",
+                "AC": false,
+                "SIN": true,
+                "ITEC": false
+            },
+            {
+                "question": "Etes vous à l’aise avec l’environnement Arduino ?",
+                "AC": false,
+                "SIN": true,
+                "ITEC": false
+            },
+            {
+                "question": "Etes vous à l’aise avec l’environnement SolidWorks ?",
+                "AC": false,
+                "SIN": false,
+                "ITEC": true
+            },
+            {
+                "question": "Aimes-tu faire des maquettes ? ",
+                "AC": true,
+                "SIN": false,
+                "ITEC": false
+            },
+            {
+                "question": "Les maisons innovantes t’intéresse-t-elle ?",
+                "AC": true,
+                "SIN": false,
+                "ITEC": false
+            }
+        ]
+    }
+}

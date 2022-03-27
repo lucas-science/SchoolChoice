@@ -61,15 +61,14 @@ exports.CreateAccount = async(req, res, next) => {
                 const token = jwt.sign({ userId: user._id }, process.env.JSW_SECRET, {
                     expiresIn: '1h'
                 });
-                res.json({ 'token': token }).status(200)
+                res.status(200).send({ 'token': token })
             })
             .catch(err => {
-                res.send(err).status(400)
+                res.status(400).send({ errors: err })
             })
     } else {
-        res.json({ message: "il faut utiliser une adresse mail académique" }).status(400)
+        res.status(500).send({ message: "il faut utiliser une adresse mail académique" })
     }
-
 }
 
 exports.ConnexionAccount = async(req, res, next) => {
@@ -83,31 +82,31 @@ exports.ConnexionAccount = async(req, res, next) => {
                         console.error(err);
                         res.status(500)
                             .json({
-                                error: 'Internal error please try again'
+                                errors: 'Internal error please try again'
                             });
                     } else if (!result) {
                         // si mot de passe incorrect
                         res.status(401)
-                            .json({
-                                error: 'Incorrect password'
+                            .send({
+                                errors: 'Incorrect password'
                             });
                     } else {
                         // si mot de passe correct, création de la session
                         const token = jwt.sign({ userId: user._id }, process.env.JSW_SECRET, {
                             expiresIn: '1h'
                         });
-                        res.json({ 'token': token }).status(200)
+                        res.status(200).send({ 'token': token })
                     }
                 });
             } else {
                 res.status(402).json({
-                    error: `Incorrect email`
+                    message: `Incorrect email`
                 })
             }
         })
         .catch(err => {
-            res.status(500).json({
-                error: `Internal error, please try again`
+            res.status(500).send({
+                message: `Internal error, please try again`
             })
         })
 }

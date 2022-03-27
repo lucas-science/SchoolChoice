@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router,Routes, Route, Switch} from "react-router-dom";
 import Home from './components/home';
 import error404 from './components/error404';
-import './App.css'
+import connection from './components/creer_compte';
+import './App.css';
 
 class App extends Component {
   render() {
@@ -11,7 +12,7 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/" exact component={Home}></Route>
-            <Route path="/lol" exact component={Home}></Route>
+            <Route path="/connection" component={connection}></Route>
             <Route component={error404}/>
           </Switch>
         </Router>

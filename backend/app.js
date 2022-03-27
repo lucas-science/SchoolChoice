@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors')
 const mongoose = require('mongoose');
 require('dotenv').config();
-// import User controllers
+const QCM = require('./qcm.json')
+    // import User controllers
 const { CreateAccount, ConnexionAccount } = require('./controllers/user')
 
 // initialisation body parser pour récupérer donné au format json
@@ -32,11 +33,17 @@ mongoose.connect(db_url, {
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 
-app.get('/create_account', CreateAccount)
+app.use('/create_account', CreateAccount)
 
-app.get('/connexion', ConnexionAccount)
+app.use('/connexion', ConnexionAccount)
 
+app.use('/test', (req, res, next) => {
+    res.send("test OK")
+})
 
+app.use('/qcm', (req, res, next) => {
+    res.status(200).send(QCM.Specialitees)
+})
 
 
 module.exports = app;
