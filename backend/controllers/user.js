@@ -64,10 +64,10 @@ exports.CreateAccount = async(req, res, next) => {
                 res.status(200).send({ 'token': token })
             })
             .catch(err => {
-                res.status(400).send({ errors: err })
+                res.status(210).send({ message: err })
             })
     } else {
-        res.status(500).send({ message: "il faut utiliser une adresse mail académique" })
+        res.status(210).send({ message: "il faut utiliser une adresse mail académique" })
     }
 }
 
@@ -80,15 +80,15 @@ exports.ConnexionAccount = async(req, res, next) => {
                 bcrypt.compare(mdp, user.mdp, (err, result) => {
                     if (err) {
                         console.error(err);
-                        res.status(500)
+                        res.status(210)
                             .json({
-                                errors: 'Internal error please try again'
+                                message: 'Internal error please try again'
                             });
                     } else if (!result) {
                         // si mot de passe incorrect
-                        res.status(401)
+                        res.status(210)
                             .send({
-                                errors: 'Incorrect password'
+                                message: 'Incorrect password'
                             });
                     } else {
                         // si mot de passe correct, création de la session
@@ -99,13 +99,13 @@ exports.ConnexionAccount = async(req, res, next) => {
                     }
                 });
             } else {
-                res.status(402).json({
+                res.status(210).json({
                     message: `Incorrect email`
                 })
             }
         })
         .catch(err => {
-            res.status(500).send({
+            res.status(210).send({
                 message: `Internal error, please try again`
             })
         })
