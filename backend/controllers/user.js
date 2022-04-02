@@ -64,7 +64,7 @@ exports.CreateAccount = async(req, res, next) => {
                 res.status(200).send({ 'token': token })
             })
             .catch(err => {
-                res.status(210).send({ message: err })
+                res.status(210).send({ message: "email déjà utilisé" })
             })
     } else {
         res.status(210).send({ message: "il faut utiliser une adresse mail académique" })

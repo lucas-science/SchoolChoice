@@ -3,7 +3,7 @@ import axios from "axios"
 import Cookies from 'universal-cookie';
 
 
-class CreerCompte extends Component {
+class ConnexionAccount extends Component {
     // différente route renvoyant un composant react
     constructor(props){
         super(props)
@@ -11,8 +11,6 @@ class CreerCompte extends Component {
         this.state = {
             email: '',
             mdp:'',
-            nom:'',
-            prenom:'',
             error_message:''
         }
     }
@@ -38,10 +36,8 @@ class CreerCompte extends Component {
     Submit = (event) => {
         event.preventDefault();
         console.log("state", this.state)
-        axios.post('http://localhost:4000/create_account',{
+        axios.post('http://localhost:4000/connexion',{
           email:this.state.email,
-          nom:this.state.nom,
-          prenom:this.state.prenom,
           mdp:this.state.mdp
         }).then(async res => {
           const {data, status} = res
@@ -49,13 +45,12 @@ class CreerCompte extends Component {
             const cookies = new Cookies();
  
             cookies.set('token', data.token, { path: '/' });
-            this.props.history.push('/app/friendlist');
+            this.props.history.push('/');
           } else {
             await this.DisplayMessageFewTime(2000, "error_message", data.message, "")
           }
         })
         .catch(err => console.log(err))
-
     }
 
     render() {
@@ -72,24 +67,6 @@ class CreerCompte extends Component {
               />
               <br/>
               <input
-                  type="text"
-                  name="nom"
-                  placeholder="nom"
-                  value={this.state.nom}
-                  onChange={this.handleInputChange}
-                  required
-              />
-              <br/>
-              <input
-                  type="text"
-                  name="prenom"
-                  placeholder="prenom"
-                  value={this.state.prenom}
-                  onChange={this.handleInputChange}
-                  required
-              />
-              <br/>
-              <input
                   type="password"
                   name="mdp"
                   placeholder="Mot de passe"
@@ -98,7 +75,7 @@ class CreerCompte extends Component {
                   required
               />
               <br/>
-              <input type="submit" value="Creer compte"/>
+              <input type="submit" value="Connexion"/>
           </form>
           <p>{this.state.error_message}</p>
         </div>
@@ -108,5 +85,5 @@ class CreerCompte extends Component {
 
 
   
-  export default CreerCompte;
+  export default ConnexionAccount;
   
