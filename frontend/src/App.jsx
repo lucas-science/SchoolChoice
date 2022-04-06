@@ -4,7 +4,7 @@ import Home from './components/home';
 import error404 from './components/error404';
 import CreerCompte from './components/creer_compte';
 import ConnexionAccount from './components/connexion'
-import ProfApp from './components/profapp';
+import ProfApp from './components/profApp/app';
 
 
 import './App.css';

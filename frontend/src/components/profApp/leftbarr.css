@@ -1,0 +1,35 @@
+.leftbarr {
+    background-color: #015958;
+    height: 100vh;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo {
+    width: 100%;
+    margin-top: -15%;
+}
+
+.onglet {
+    width: 90%;
+    background-color: #016D6C;
+    border-radius: 5px;
+    color: azure;
+    margin-bottom: 5%;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+}
+
+.onglet :hover {
+    background-color: #008280;
+}
+
+.onglet :active {
+    background-color: #008280;
+}
+
+p {
+    margin: 0;
+}
