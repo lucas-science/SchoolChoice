@@ -7,7 +7,7 @@ import ConnexionAccount from './components/connexion'
 import ProfApp from './components/profApp/app';
 
 
-import './App.css';
+import './App.css'; 
 import withAuth from './components/withAuth'
 class App extends Component {
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/" exact component={Home}></Route>
-            <Route path="/app" exact component={withAuth(ProfApp)}></Route>
+            <Route path="/app" component={withAuth(ProfApp)}></Route>
             <Route path="/create_account" component={CreerCompte}></Route>
             <Route path="/connexion_account" component={ConnexionAccount}></Route>
             <Route component={error404}/>

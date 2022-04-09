@@ -45,7 +45,7 @@ export default function withAuth(ComponentToProtect) {
       }
       // si redirect est TRUE renvoyer vers la page de connexion
       if (redirect) {
-        return <Redirect to="/error404" />;
+        return <Redirect to="/connexion_account" />;
       }
       // si redirect est FALSE renvoyer le composant voulu
       return <ComponentToProtect {...this.props} />;

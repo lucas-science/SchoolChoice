@@ -1,0 +1,9 @@
+.app_body {
+    background-color: #E5E5E5;
+    width: 80%;
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
