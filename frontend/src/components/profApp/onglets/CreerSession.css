@@ -1,8 +1,8 @@
-
-input{
+input {
     border: none;
 }
-input:focus{
+
+input:focus {
     border: none;
     outline: none;
 }
@@ -18,15 +18,18 @@ input:focus{
 }
 
 .creer_top {
- width: 100%;
- height: 80%;
- background-color: blueviolet;
- display: flex;
- justify-content: space-around;
- align-items: center;
+    width: 100%;
+    height: 80%;
+    background-color: blueviolet;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
+
+
 /*PART 1*/
-.creer_part1{
+
+.creer_part1 {
     width: 40%;
     height: 60%;
     background-color: rgb(73, 226, 43);
@@ -37,28 +40,33 @@ input:focus{
     justify-content: space-around;
     align-items: center;
 }
-.creer_part1_input{
+
+.creer_part1_input {
     width: 80%;
     height: 50%;
     margin-top: 5px;
 }
-.creer_part1_a{
-    height: 30%;
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    margin-left: 5%;
 
-}
-.creer_part1_b{
+.creer_part1_a {
     height: 30%;
     width: 70%;
     display: flex;
     flex-direction: column;
     margin-left: 5%;
 }
+
+.creer_part1_b {
+    height: 30%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+}
+
+
 /*PART 2*/
-.creer_part2{
+
+.creer_part2 {
     width: 40%;
     height: 80%;
     padding: 0px 15px 0px 15px;
@@ -70,6 +78,7 @@ input:focus{
     align-items: center;
     flex-direction: column;
 }
+
 .creer_liste_eleves {
     background-color: aqua;
     width: 90%;
@@ -78,27 +87,29 @@ input:focus{
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    overflow-y:scroll;
+    overflow-y: scroll;
 }
+
 .creer_student {
     background-color: bisque;
     padding: 7px;
     width: 65%;
     margin-top: 3.75px;
     margin-bottom: 3.75px;
+    display: flex;
+    justify-content: space-between;
 }
-.creer_form_add_eleve{
+
+.creer_form_add_eleve {
     width: 70%;
     display: flex;
     justify-content: center;
 }
 
 
-
-
-
 /*SUBMIT PART*/
-.creer_bottom{
+
+.creer_bottom {
     width: 100%;
     height: 20%;
     background-color: rgb(23, 202, 178);
@@ -106,14 +117,14 @@ input:focus{
     justify-content: center;
     align-items: center;
 }
-.creer_submit_button{
+
+.creer_submit_button {
     padding: 10px;
     border: none;
     background-color: #015958;
 }
-.creer_submit_button:hover{
+
+.creer_submit_button:hover {
     background-color: #01413f;
     cursor: pointer;
 }
-
-
