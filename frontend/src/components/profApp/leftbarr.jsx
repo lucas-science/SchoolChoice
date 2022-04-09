@@ -31,7 +31,5 @@ class ProfApp extends Component {
     }
   }
 
-
-  
   export default ProfApp;
   
