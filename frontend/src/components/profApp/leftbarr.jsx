@@ -20,16 +20,15 @@ class ProfApp extends Component {
       return (
         <div className='leftbarr'>
             <img className='logo' src={Logo} />
-            <Link to='/app/vos_sessions' className='onglet'>
+            <Link to='/appProf/vos_sessions' className='onglet'>
               Vos sessions
             </Link>
-            <Link to='/app/creer_session' className='onglet'>
+            <Link to='/appProf/creer_session' className='onglet'>
               Creer session
             </Link>
-            <Link to='/app/vos_statistiques' className='onglet'>
+            <Link to='/appProf/vos_statistiques' className='onglet'>
               Vos Statistique
             </Link>
-
         </div>
       );
     }
