@@ -1,0 +1,17 @@
+let express = require('express')
+const User = require("./user")
+const Session = require("../models/Session")
+
+
+exports.CreateSession = async (req, res) => {
+    //const {nom, eleves} = req.body
+
+    const session = new Session({
+        nom : nom, 
+        eleve : eleves
+
+    })
+    await session.save()
+
+    return{status:200}
+}
