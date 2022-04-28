@@ -1,10 +1,15 @@
 let express = require('express')
-const User = require("./user")
+const User = require("../models/user")
 const Session = require("../models/Session")
 
 
 exports.CreateSession = async (req, res) => {
-    //const {nom, eleves} = req.body
+    /*
+    Fonction qui créer une session dans la base de données grace à un modèle défini 
+    param : nom : nom de la session donné par le prof 
+    eleves : liste d'élèves
+    _idprof : l'id du prof dans la base de données 
+    */
 
     const session = new Session({
         nom : nom, 
@@ -12,6 +17,10 @@ exports.CreateSession = async (req, res) => {
 
     })
     await session.save()
+
+    await User.findByIdAndUpdate(_idprof, {$push:{
+        sessions : session._id
+    }})
 
     return{status:200}
 }
