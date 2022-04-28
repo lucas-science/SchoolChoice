@@ -11,6 +11,7 @@ exports.CreateSession = async (req, res) => {
     _idprof : l'id du prof dans la base de données 
     */
 
+    const { nom, eleves, _idprof} = req.body
     const session = new Session({
         nom : nom, 
         eleve : eleves
@@ -22,5 +23,5 @@ exports.CreateSession = async (req, res) => {
         sessions : session._id
     }})
 
-    return{status:200}
+    res.status(200).send()
 }
