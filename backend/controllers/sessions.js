@@ -48,3 +48,12 @@ exports.DeleteSession = async (req, res) => {
     })
     res.status(200).send()
     }
+
+/* A mettre dans le body pour réussir à faire marcher les fonctions : 
+{
+    "_idsessiondelete":"",
+    "nom_session":"",
+    "eleves" : [],
+    "_idprof":""
+}
+*/
