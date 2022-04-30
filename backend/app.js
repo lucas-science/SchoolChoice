@@ -8,7 +8,8 @@ require('dotenv').config();
 const QCM = require('./qcm.json')
     // import User controllers
 const { CreateAccount, ConnexionAccount } = require('./controllers/user')
-const {CreateSession} = require('./controllers/createsession')
+const {CreateSession, DeleteSession} = require('./controllers/sessions')
+
 const jwt = require('jsonwebtoken');
 
 // initialisation body parser pour récupérer donné au format json
@@ -47,7 +48,8 @@ app.use('/qcm', (req, res, next) => {
     res.status(200).send(QCM.Specialitees)
 })
 
-app.use('/create_session', Createsesion)
+app.use('/create_session', CreateSession)
+app.use('/delete_session', DeleteSession)
 
 app.use('/auth', (req, res, next) => {
     const token =

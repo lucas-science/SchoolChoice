@@ -7,11 +7,7 @@ const userSchema = mongoose.Schema({
     prenom: { type: String, required: true, },
     email: { type: String, required: true, unique: true, },
     mdp: { type: String, required: true },
-    sessions: [{
-        session_id: { type: String, required: true },
-        nom: { type: String, required: true },
-        nbr_eleve: { type: Number, require: true }
-    }]
+    sessions: {type : Array}
 });
 
 // fonction permettant de ne pas avoir de doublon
