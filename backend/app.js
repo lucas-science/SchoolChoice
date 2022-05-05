@@ -27,6 +27,7 @@ app.use(
     })
 );
 
+// Connexion à la base de données 
 const db_url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.5rx1a.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 mongoose.connect(db_url, {
         useNewUrlParser: true,
@@ -35,7 +36,7 @@ mongoose.connect(db_url, {
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-
+// Différentes routes reliées aux différentes fonctions 
 app.use('/create_account', CreateAccount)
 
 app.use('/connexion', ConnexionAccount)

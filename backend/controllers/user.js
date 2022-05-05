@@ -48,6 +48,7 @@ const isValideEmail = (email) => {
 exports.CreateAccount = async(req, res, next) => {
     const { email, nom, prenom, mdp } = req.body
 
+    // Si l'email est bien valide, créer un nouvel compte professeur
     if (isValideEmail(email)) {
         const hash = await bcrypt.hash(mdp, 10)
         const user = new User({
@@ -61,13 +62,13 @@ exports.CreateAccount = async(req, res, next) => {
                 const token = jwt.sign({ userId: user._id }, process.env.JSW_SECRET, {
                     expiresIn: '1h'
                 });
-                res.status(200).send({ 'token': token })
+                res.status(200).send({ 'token': token }) // renvoie 200 si tout s'est bien passé
             })
             .catch(err => {
-                res.status(210).send({ message: "email déjà utilisé" })
+                res.status(210).send({ message: "email déjà utilisé" }) // renvoie une erreur si l'email a déjà été utilisé
             })
     } else {
-        res.status(210).send({ message: "il faut utiliser une adresse mail académique" })
+        res.status(210).send({ message: "il faut utiliser une adresse mail académique" }) // renvoie une erreur si l'email utilisé n'est pas un email académique 
     }
 }
 
