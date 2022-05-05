@@ -9,6 +9,10 @@ import EleveApp from './components/App/app'
 
 import './App.css'; 
 import withAuth from './components/withAuth'
+
+/**
+ * Switch avec chaque route lié à un components
+ */
 class App extends Component {
   render() {
     return (
