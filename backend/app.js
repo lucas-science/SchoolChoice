@@ -8,7 +8,7 @@ require('dotenv').config();
 const QCM = require('./qcm.json')
     // import User controllers
 const { CreateAccount, ConnexionAccount } = require('./controllers/user')
-const {CreateSession, DeleteSession} = require('./controllers/sessions')
+const { CreateSession, DeleteSession } = require('./controllers/sessions')
 
 const jwt = require('jsonwebtoken');
 
@@ -41,13 +41,24 @@ app.use('/create_account', CreateAccount)
 
 app.use('/connexion', ConnexionAccount)
 
-app.use('/test', (req, res, next) => {
-    res.send("test OK")
-})
+
 
 app.use('/qcm', (req, res, next) => {
     res.status(200).send(QCM.Specialitees)
 })
+
+function generateP(length) {
+    let pass = '';
+    const str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
+        'abcdefghijklmnopqrstuvwxyz0123456789#$';
+
+    for (let i = 1; i <= length; i++) {
+        let char = Math.floor(Math.random() * str.length + 1);
+        pass += str.charAt(char)
+    }
+
+    return pass
+}
 
 app.use('/create_session', CreateSession)
 app.use('/delete_session', DeleteSession)
