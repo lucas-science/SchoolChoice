@@ -6,7 +6,7 @@ import CreerCompte from './components/creer_compte';
 import ConnexionAccount from './components/connexion'
 import ProfApp from './components/profApp/app';
 import EleveApp from './components/App/app'
-
+import AppSpe from './components/App/appSpe'
 import './App.css'; 
 import withAuth from './components/withAuth'
 
@@ -21,11 +21,13 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Home}></Route>
             <Route path="/app" exact component={EleveApp}></Route>
+            <Route path="/appSpe" exact component={AppSpe}></Route>
             <Route path="/appProf" component={withAuth(ProfApp)}></Route>
             <Route path="/create_account" component={CreerCompte}></Route>
             <Route path="/connexion_account" component={ConnexionAccount}></Route>
             <Route component={error404}/>
             <Route path="/error404" exact component={error404}></Route>
+
           </Switch>
         </Router>
       </div>
