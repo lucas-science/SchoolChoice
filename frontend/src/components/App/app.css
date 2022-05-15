@@ -7,6 +7,12 @@ body{
     font-family: 'Lilita One', cursive;
 }
 
+a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Lilita One', cursive;
+}
+
 .logo{
     position: fixed;
     height: 7.5%;
@@ -81,7 +87,7 @@ body{
     font-size: 2vw;
 }
 
-.answer-section{
+.reponse-section{
     z-index: 30;
     border-top: 50%;
     display: flex;

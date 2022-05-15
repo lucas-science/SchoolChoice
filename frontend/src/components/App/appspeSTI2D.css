@@ -1,0 +1,13 @@
+.carte-speSTI2D-actuel{
+    height: 90%;
+    width: 47%;
+    background-color:rgb(144, 194, 71);
+    border-radius:5% ;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 1.6vw;
+    align-items: center;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
+}

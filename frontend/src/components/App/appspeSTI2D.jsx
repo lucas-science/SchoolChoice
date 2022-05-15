@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import questions from './questionnaire1.jsx';
+import questions from './questionnaireSTI2D.jsx';
 import './app.css'
 import logo from './image/logo.png'
 import {Link} from 'react-router-dom'
-
+import './appspeSTI2D.css'
 
 
 
@@ -14,19 +14,22 @@ export default function App() {
 
 	const [montrerscore,setmontrerscore]=useState(false);
 
-	const [scoreGeneral,setscoreGeneral] = useState(0);
-	const [scoreSTI2D,setscoreSTI2D] = useState(0);
-	const [scoreST2S,setscoreST2S] = useState(0);
+	const [scoreAC,setscoreAC] = useState(0);
+	const [scoreSIN,setscoreSIN] = useState(0);
+    const [scoreITEC,setscoreITEC] = useState(0);
+
+
 
 	const pochainequestionclick = (filiere) => {
 
-		if(filiere.includes("proGENERAUX")){
-			setscoreGeneral(scoreGeneral+1)
-		} if ( filiere.includes("proSTI2D")){
-			setscoreSTI2D(scoreSTI2D+1)
-		}if (filiere.includes("proST2S")){
-			setscoreST2S(scoreST2S+1)
+		if(filiere.includes("AC")){
+			setscoreAC(scoreAC+1)
+		} if ( filiere.includes("SI")){
+			setscoreSIN(scoreSIN+1)
+		}if (filiere.includes("ITEC")){
+			setscoreITEC(scoreITEC+1)
 		}
+
 
 
 
@@ -49,29 +52,12 @@ export default function App() {
 			{montrerscore? (
 				<div className='score-section'>
 					<img className='logo' src={logo} alt="logo" />
-					<div className='box-texte'>Voici t'es resultats : </div>
-					<div className='box-reponse'>
-						<div className='box-resultat-filliere'>
-							<div className='titre-resultat-filliere'>STI2D</div>
-							<div className='resultat-filliere-scorre'>{scoreSTI2D}/{questions.length}</div>
-
-						</div>
-
-						<div className='box-resultat-filliere'>
-							<div className='titre-resultat-filliere'>General</div>
-							<div className='resultat-filliere-scorre'>{scoreSTI2D}/{questions.length}</div>
-							<button className='boutton-questionnaire-spe' >
-
-							<Link to='/AppSpe'>
-							QUESTIONNAIRE POUR CONNAITRE TA SPECIALITE
-            				</Link>
-							
-            				</button>
-						</div>
-
-						<div className='box-resultat-filliere'>
-							<div className='titre-resultat-filliere'>ST2S</div>
-							<div className='resultat-filliere-scorre'>{scoreST2S}/{questions.length}</div>
+					<div className='box-texte'>Voici t'es resultats pour la General : </div>
+					<div >
+						<div>
+							<div className='resultat-filliere-scorre'>AC : {scoreAC}/{questions.length}</div>
+                            <div className='resultat-filliere-scorre'>SIN : {scoreSIN}/{questions.length}</div>
+                            <div className='resultat-filliere-scorre'>ITEC: {scoreITEC}/{questions.length}</div>
 						</div>
 					</div>
 				</div>
@@ -80,7 +66,7 @@ export default function App() {
 					<div className='question-section'>
 					<img className='logo' src={logo} alt="logo" />
 						<div className='carte'>
-							<div className='carteactuelle'>
+							<div className='carte-speSTI2D-actuel'>
 						
 								<div>
 									<span>Question {questionencourt+1}</span>/{questions.length}
