@@ -1,9 +1,83 @@
-.main {
-    display: flex;
-    flex-direction: column;
+.main-home {
+    background-color: #E1E1E1;
+    height: 100vh;
     width: 100%;
-    margin-top: 30vh;
-    height: 40vh;
+}
+
+.navbarrehome{
+
+    height: 13%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.lien-home-box{
+    height: 100%;
+
+    width: 50%;
+    display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    font-size: 1.3vw;
+}
+
+.lien-home{
+    border: solid 4px;
+    border-radius:10px ;
+    cursor: pointer; 
+    padding: 1%;
+}
+
+.logo-home-box{
+    height: 100%;
+
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logo-home{
+    height:10vh;
+    width: 100%;
+    margin-left: 5%;
+}
+
+
+.home-texte-box{
+    width: 100ù;
+    height: 87%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-texte1{
+    font-size: 5vw;
+    margin-bottom: 5%;
+    z-index: 3;
+}
+
+.home-texte2{
+    font-size: 3vw;
+
+}
+
+.carte-bleu-home{
+    position: absolute;
+    right: 0px;
+    height: 70%;
+    z-index: 1;
+}
+
+
+.carte-orange-home{
+    position: absolute;
+    left: 0px;
+    height: 65%;
+    top: 34%;
+    z-index: 1;
 }

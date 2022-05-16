@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+body{
+    background-color: #D9D9D9;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lilita One', cursive;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Lilita One', cursive;
+}
+
+.logo{
+    position: fixed;
+    height: 7.5%;
+    width: 22%;
+    left: 0.5%;
+
+    margin-top: 1%;
+}
+
+.app{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+}
+
+.question-section{
+    z-index: 6;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+}
+
+.question-count{
+    display: flex;
+}
+
+.question-text{
+    display: flex;
+}
+
+.carte{
+    z-index: 30;
+    position: relative;
+
+    top: 20%;
+    left: 50vh;
+    display: flex;
+    width: 50%;
+    height: 65%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.carteactuelle{
+    height: 90%;
+    width: 47%;
+    background-color: #2B3EA0;
+    border-radius:5% ;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 1.6vw;
+    align-items: center;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
+}
+
+.question-text{
+
+    width: 90%;
+    height: 80%;
+    left: 10%;
+    display:flex ;
+    align-items: center;
+    font-size: 2vw;
+}
+
+.reponse-section{
+    z-index: 30;
+    border-top: 50%;
+    display: flex;
+    background-color: #015958;
+    border-top-right-radius: 1000%;
+    border-top-left-radius: 1000%;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 35%;
+    
+}
+
+.boutronreponse{
+    border:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    background-color: #015958;
+    border-radius: 50px;
+    z-index: 1;
+    position: relative;
+}
+
+.bouttonsection{
+
+    width: 18%;
+    height: 25%;
+    display: flex;
+    margin-bottom: 2%;
+    justify-content: space-around;
+
+}
+
+.coeur{
+    width: 100%;
+    height: 100%;
+    cursor: pointer; 
+}
+
+.croix{
+    width: 100%;
+    height: 100%;
+    cursor: pointer; 
+}
+.formmereponse{
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.score-section{
+    background-color: #015958;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.box-texte{
+    width: 100%;
+
+    height: 22%;
+    color: aliceblue;
+    font-size: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-reponse{
+
+    height: 70%;
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.box-resultat-filliere{
+    border-radius: 12%;
+    background-color: #D8FFDB;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titre-resultat-filliere{
+    height: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.2vw;
+}
+
+.resultat-filliere-scorre{
+
+    display: flex;
+    height: 40%;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.7vw;
+}
+
+.boutton-questionnaire-spe{
+    width: 80%;
+    height: 7%;
+    cursor: pointer; 
+    border:none;
+    border-radius: 9px ;
+    border: solid #015958;
+    background-color: gainsboro;
+    font-family: 'Lilita One', cursive; 
+}
