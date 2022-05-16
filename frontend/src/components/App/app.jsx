@@ -48,7 +48,10 @@ export default function App() {
 			
 			{montrerscore? (
 				<div className='score-section'>
-					<img className='logo' src={logo} alt="logo" />
+					
+					<Link to='/'>
+						<img className='logo' src={logo} alt="logo" />
+						</Link>
 					<div className='box-texte'>Voici t'es resultats : </div>
 					<div className='box-reponse'>
 						<div className='box-resultat-filliere'>
@@ -78,7 +81,9 @@ export default function App() {
 			) : (
 				<>
 					<div className='question-section'>
-					<img className='logo' src={logo} alt="logo" />
+						<Link to='/'>
+						<img className='logo' src={logo} alt="logo" />
+						</Link>
 						<div className='carte'>
 							<div className='carteactuelle'>
 						

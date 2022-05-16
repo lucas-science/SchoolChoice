@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios"
 import Cookies from 'universal-cookie';
-
+import './creer_compte.css'
+import {Link} from 'react-router-dom'
 
 class CreerCompte extends Component {
     // différente route renvoyant un composant react
@@ -60,7 +61,9 @@ class CreerCompte extends Component {
 
     render() {
       return (
-        <div>
+        <div className='creer-compte-main'>
+          <div className='creer-compte-box'>
+            <div className='creer-compte-box-gauche'>
           <form onSubmit={this.Submit}>{/* Le formulaire pour se créer un compte */}
               <input
                   type="email"
@@ -101,6 +104,19 @@ class CreerCompte extends Component {
               <input type="submit" value="Creer compte"/>
           </form>
           <p>{this.state.error_message}</p>
+          </div>
+          <div className='creer-compte-box-droite'>
+            <div className='creer-compte-textebox-droite'>
+              <p className='creer-compte-texte1-droite'>Welcome back </p>
+              <p className='creer-compte-texte2-droite'>Si tu as déjà un compte, il te suffit de te connecter !</p>
+              <button className='creer-compte-boutton-droite'>
+                
+              <Link className='creer-compte-boutton-droite' to='/connexion_account'>
+							  se connecter
+            	</Link></button>
+              </div>
+          </div>
+          </div>
         </div>
       );
     }

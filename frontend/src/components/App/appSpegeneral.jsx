@@ -73,7 +73,9 @@ export default function App() {
 			
 			{montrerscore? (
 				<div className='score-section'>
-					<img className='logo' src={logo} alt="logo" />
+					<Link to='/'>
+						<img className='logo' src={logo} alt="logo" />
+						</Link>
 					<div className='box-texte'>Voici t'es resultats pour la General : </div>
 					<div >
 						<div>
@@ -92,7 +94,9 @@ export default function App() {
 			) : (
 				<>
 					<div className='question-section'>
-					<img className='logo' src={logo} alt="logo" />
+					<Link to='/'>
+						<img className='logo' src={logo} alt="logo" />
+						</Link>
 						<div className='carte'>
 							<div className='carte-spegeneral-actuel'>
 						
