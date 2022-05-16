@@ -99,6 +99,9 @@ export default function App() {
                             <div className='resultat-filliere-scorre-G'>HGGSP : {Math.round((scoreHGGSP/6)*100)}%</div>
 						</div>
 					</div>
+					<button className='bouton-recomencer'><Link to='/app'>
+						Recommencer
+						</Link></button>
 				</div>
 			) : (
 				<>

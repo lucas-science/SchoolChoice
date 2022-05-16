@@ -225,3 +225,13 @@ a{
     background-color: gainsboro;
     font-family: 'Lilita One', cursive; 
 }
+
+
+.bouton-recomencer{
+    position: absolute;
+    padding: 1.5%;
+    bottom:3%;
+    right: 5%;
+    border-radius: 5px;
+    background-color: #D8FFDB;
+}
