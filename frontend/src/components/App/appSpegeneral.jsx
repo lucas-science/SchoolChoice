@@ -4,7 +4,7 @@ import './app.css'
 import logo from './image/logo.png'
 import {Link} from 'react-router-dom'
 import './appspegeneral.css'
-
+import Cookies from 'universal-cookie';
 
 
 export default function App() {
@@ -46,7 +46,7 @@ export default function App() {
 			setscoreHLP(scoreHLP+1)
 		}
         if (filiere.includes("SVT")){
-			setscoreHLP(scoreSVT+1)
+			setscoreSVT(scoreSVT+1)
 		}
         if (filiere.includes("HGGSP")){
 			setscoreHGGSP(scoreHGGSP+1)
@@ -65,29 +65,38 @@ export default function App() {
 	}
 
 
-
+	const scrore = new Cookies();
 
 	return (
 		
-		<div className='app'>
+		<div className='app-general'>
 			
 			{montrerscore? (
 				<div className='score-section'>
 					<Link to='/'>
 						<img className='logo' src={logo} alt="logo" />
 						</Link>
-					<div className='box-texte'>Voici t'es resultats pour la General : </div>
+					
+						<div className='box-texte-general'>Voici t'es precendent resultat : </div>
 					<div >
 						<div>
-							<div className='resultat-filliere-scorre'>NSI : {scoreNSI}/{questions.length}</div>
-                            <div className='resultat-filliere-scorre'>SI : {scoreSI}/{questions.length}</div>
-                            <div className='resultat-filliere-scorre'>Maths: {scoreMaths}/{questions.length}</div>
-                            <div className='resultat-filliere-scorre'>Physique-chimie: {scorePC}/{questions.length}</div>
-                            <div className='resultat-filliere-scorre'>LLCER: {scoreLLCER}/{questions.length}</div>
-                            <div className='resultat-filliere-scorre'>SES: {scoreSES}/{questions.length}</div>
-                            <div className='resultat-filliere-scorre'>HLP: {scoreHLP}/{questions.length}</div>
-                            <div className='resultat-filliere-scorre'>SVT: {scoreSVT}/{questions.length}</div>
-                            <div className='resultat-filliere-scorre'>HGGSP: {scoreHGGSP}/{questions.length}</div>
+							<div className='resultat-filliere-scorre-G'>STI2D : {scrore.get('resultatSTI2D')}%</div>
+                            <div className='resultat-filliere-scorre-G'>GENERAL : {scrore.get('resultatgeneral')}%</div>
+                            <div className='resultat-filliere-scorre-G'>ST2S : {scrore.get('resultatST2S')}%</div>
+						</div>
+					</div>
+					<div className='box-texte-general'>Voici t'es resultats pour la General : </div>
+					<div >
+						<div>
+							<div className='resultat-filliere-scorre-G'>NSI : {Math.round((scoreNSI/11)*100)}%</div>
+                            <div className='resultat-filliere-scorre-G'>SI : {Math.round((scoreSI/9)*100)}%</div>
+                            <div className='resultat-filliere-scorre-G'>Maths : {Math.round((scoreMaths/6)*100)}%</div>
+                            <div className='resultat-filliere-scorre-G'>PC : {Math.round((scorePC/6)*100)}%</div>
+                            <div className='resultat-filliere-scorre-G'>LLCER : {Math.round((scoreLLCER/5)*100)}%</div>
+                            <div className='resultat-filliere-scorre-G'>SES : {Math.round((scoreSES/4)*100)}%</div>
+                            <div className='resultat-filliere-scorre-G'>HLP : {Math.round((scoreHLP/3)*100)}%</div>
+                            <div className='resultat-filliere-scorre-G'>SVT : {Math.round((scoreSVT/2)*100)}%</div>
+                            <div className='resultat-filliere-scorre-G'>HGGSP : {Math.round((scoreHGGSP/6)*100)}%</div>
 						</div>
 					</div>
 				</div>
@@ -118,3 +127,4 @@ export default function App() {
 		</div>
 	);
 }
+

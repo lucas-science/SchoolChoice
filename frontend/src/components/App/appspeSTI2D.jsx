@@ -4,7 +4,7 @@ import './app.css'
 import logo from './image/logo.png'
 import {Link} from 'react-router-dom'
 import './appspeSTI2D.css'
-
+import Cookies from 'universal-cookie';
 
 
 export default function App() {
@@ -24,7 +24,7 @@ export default function App() {
 
 		if(filiere.includes("AC")){
 			setscoreAC(scoreAC+1)
-		} if ( filiere.includes("SI")){
+		} if ( filiere.includes("SIN")){
 			setscoreSIN(scoreSIN+1)
 		}if (filiere.includes("ITEC")){
 			setscoreITEC(scoreITEC+1)
@@ -42,24 +42,33 @@ export default function App() {
 		
 	}
 
-
-
+	
+	const scrore = new Cookies();
 
 	return (
 		
-		<div className='app'>
+		<div className='app-sti'>
 			
 			{montrerscore? (
 				<div className='score-section'>
 					<Link to='/'>
 						<img className='logo' src={logo} alt="logo" />
 						</Link>
-					<div className='box-texte'>Voici t'es resultats pour la General : </div>
+						<div className='box-texte'>Voici t'es precendent resultat : </div>
+					<div >
+						
+							<div className='resultat-filliere-scorre'>STI2D : {scrore.get('resultatSTI2D')}%</div>
+                            <div className='resultat-filliere-scorre'>GENERAL: {scrore.get('resultatgeneral')}%</div>
+                            <div className='resultat-filliere-scorre'>ST2S: {scrore.get('resultatST2S')}%</div>
+					
+					</div>
+					
+					<div className='box-texte'>Voici t'es resultats pour la STI2D : </div>
 					<div >
 						<div>
-							<div className='resultat-filliere-scorre'>AC : {scoreAC}/{questions.length}</div>
-                            <div className='resultat-filliere-scorre'>SIN : {scoreSIN}/{questions.length}</div>
-                            <div className='resultat-filliere-scorre'>ITEC: {scoreITEC}/{questions.length}</div>
+							<div className='resultat-filliere-scorre'>AC : { Math.round((scoreAC/4)*100)}%</div>
+                            <div className='resultat-filliere-scorre'>SIN : { Math.round((scoreSIN/7)*100)}%</div>
+                            <div className='resultat-filliere-scorre'>ITEC: { Math.round((scoreITEC/4)*100)}%</div>
 						</div>
 					</div>
 				</div>

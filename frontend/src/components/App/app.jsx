@@ -3,7 +3,7 @@ import questions from './questionnaire1.jsx';
 import './app.css'
 import logo from './image/logo.png'
 import {Link} from 'react-router-dom'
-
+import Cookies from 'universal-cookie';
 
 
 
@@ -36,8 +36,14 @@ export default function App() {
 		}else{
 			setmontrerscore(true);
 		}
-		
+	
 	}
+
+	const cookies = new Cookies();
+
+	cookies.set('resultatgeneral', Math.round((scoreGeneral/7)*100), { path: '/' });
+	cookies.set('resultatSTI2D', Math.round((scoreSTI2D/6)*100), { path: '/' });
+	cookies.set('resultatST2S', Math.round((scoreST2S/7)*100), { path: '/' });
 
 
 
@@ -56,13 +62,13 @@ export default function App() {
 					<div className='box-reponse'>
 						<div className='box-resultat-filliere'>
 							<div className='titre-resultat-filliere'>STI2D</div>
-							<div className='resultat-filliere-scorre'>{scoreSTI2D}/{questions.length}</div>
+							<div className='resultat-filliere-scorre'>{Math.round((scoreSTI2D/6)*100)}%</div>
 
 						</div>
 
 						<div className='box-resultat-filliere'>
 							<div className='titre-resultat-filliere'>General</div>
-							<div className='resultat-filliere-scorre'>{scoreSTI2D}/{questions.length}</div>
+							<div className='resultat-filliere-scorre'>{Math.round((scoreGeneral/7)*100)}%</div>
 							<button className='boutton-questionnaire-spe' >
 
 							<Link to='/AppSpe'>
@@ -74,7 +80,7 @@ export default function App() {
 
 						<div className='box-resultat-filliere'>
 							<div className='titre-resultat-filliere'>ST2S</div>
-							<div className='resultat-filliere-scorre'>{scoreST2S}/{questions.length}</div>
+							<div className='resultat-filliere-scorre'>{Math.round((scoreST2S/7)*100)}%</div>
 						</div>
 					</div>
 				</div>
@@ -105,3 +111,4 @@ export default function App() {
 		</div>
 	);
 }
+

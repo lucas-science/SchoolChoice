@@ -11,3 +11,21 @@
     align-items: center;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
 }
+
+.app-general{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: white;
+}
+
+.box-texte-general{
+    font-size: 2.7vw;
+    margin-bottom: 1.5%;
+}
+
+.resultat-filliere-scorre-G{
+    font-size: 2.3vw;
+    margin-bottom: 3%;
+}
