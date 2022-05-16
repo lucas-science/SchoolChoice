@@ -47,19 +47,6 @@ app.use('/qcm', (req, res, next) => {
     res.status(200).send(QCM.Specialitees)
 })
 
-function generateP(length) {
-    let pass = '';
-    const str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
-        'abcdefghijklmnopqrstuvwxyz0123456789#$';
-
-    for (let i = 1; i <= length; i++) {
-        let char = Math.floor(Math.random() * str.length + 1);
-        pass += str.charAt(char)
-    }
-
-    return pass
-}
-
 app.use('/create_session', CreateSession)
 app.use('/delete_session', DeleteSession)
 
