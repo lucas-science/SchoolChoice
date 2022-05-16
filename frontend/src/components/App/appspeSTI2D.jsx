@@ -71,6 +71,9 @@ export default function App() {
                             <div className='resultat-filliere-scorre'>ITEC: { Math.round((scoreITEC/4)*100)}%</div>
 						</div>
 					</div>
+					<button className='bouton-recomencer'><Link to='/app'>
+						Recommencer
+						</Link></button>
 				</div>
 			) : (
 				<>

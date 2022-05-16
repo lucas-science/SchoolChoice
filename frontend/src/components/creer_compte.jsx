@@ -65,7 +65,10 @@ class CreerCompte extends Component {
           <div className='creer-compte-box'>
             <div className='creer-compte-box-gauche'>
           <form onSubmit={this.Submit}>{/* Le formulaire pour se créer un compte */}
-              <input
+              <div className='creer-compte-box-input'>
+                <p className='creercompte-texte-gauche'>Create Account</p>
+              <input 
+                  className='creer-compte-input'
                   type="email"
                   name="email"
                   placeholder="E-mail"
@@ -74,25 +77,28 @@ class CreerCompte extends Component {
                   required
               />
               <br/>
-              <input
+              <input 
+                  className='creer-compte-input'
                   type="text"
                   name="nom"
-                  placeholder="nom"
+                  placeholder="Nom"
                   value={this.state.nom}
                   onChange={this.handleInputChange}
                   required
               />
               <br/>
               <input
+                  className='creer-compte-input'
                   type="text"
                   name="prenom"
-                  placeholder="prenom"
+                  placeholder="Prenom"
                   value={this.state.prenom}
                   onChange={this.handleInputChange}
                   required
               />
               <br/>
               <input
+              className='creer-compte-input'
                   type="password"
                   name="mdp"
                   placeholder="Mot de passe"
@@ -101,7 +107,8 @@ class CreerCompte extends Component {
                   required
               />
               <br/>
-              <input type="submit" value="Creer compte"/>
+              <input className='creercompte-bouton-gauche' type="submit" value="Creer compte"/>
+              </div>
           </form>
           <p>{this.state.error_message}</p>
           </div>
@@ -111,7 +118,7 @@ class CreerCompte extends Component {
               <p className='creer-compte-texte2-droite'>Si tu as déjà un compte, il te suffit de te connecter !</p>
               <button className='creer-compte-boutton-droite'>
                 
-              <Link className='creer-compte-boutton-droite' to='/connexion_account'>
+              <Link className='creer-compte-boutton-droite'to='/connexion_account'>
 							  se connecter
             	</Link></button>
               </div>

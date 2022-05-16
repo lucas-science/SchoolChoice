@@ -1,4 +1,4 @@
-.creer-compte-main{
+.connexion-main{
     background-color: #D9D9D9;
     display: flex;
     justify-content: center;
@@ -7,7 +7,7 @@
     width: 100%;
 }
 
-.creer-compte-box{
+.connexion-box{
     background-color: white;
     width: 70%;
     height: 80%;
@@ -16,17 +16,7 @@
     border-radius: 20px;
 }
 
-
-.creer-compte-box-gauche{
-    width: 55%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.creer-compte-box-droite{
+.connexion-gauche{
     background-color: #015958;
     width: 45%;
     border-radius: 20px ;
@@ -36,7 +26,8 @@
     align-items: center;
 }
 
-.creer-compte-textebox-droite{
+
+.connexion-textebox-gauche{
 
     height: 60%;
     display: flex;
@@ -45,20 +36,20 @@
     align-items: center;
 }
 
-.creer-compte-texte1-droite{
+.connexion-texte1-gauche{
     font-size: 2vw;
     color: white;
 }
 
-.creer-compte-texte2-droite{
+.connexion-texte2-gauche{
     font-size: 1.3vw;
     color: white;
 }
 
-.creer-compte-boutton-droite{
+.connexion-boutton-gauche{
     border-style:none ;
     height: 12%;
-    width: 40%;
+    width: 50%;
     border-radius: 10px;
     background-color: #FF9D0B;
     color: white;
@@ -66,21 +57,31 @@
     font-family: 'Lilita One', cursive;
 }
 
-.creer-compte-box-input{
+
+.connexion-box-droite{
+    width: 55%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.connexion-box-input{
     
-    height: 50vh;
-    
+    height: 60vh;
+    margin-top: 25%;
     width: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.creer-compte-input{
+
+.connexion-input{
     background-color: #E1E1E1;
     border-style:none ;
    
-    height: 70%;
+    height: 10%;
     width: 100%;
     border-radius:10px ;
     display: flex;
@@ -88,7 +89,7 @@
     align-items: center;
 }
 
-.creercompte-texte-gauche{
+.connexion-texte-droite{
     margin-bottom: 15%;
     display: flex;
     justify-content: center;
@@ -97,12 +98,14 @@
     
 }
 
-.creercompte-bouton-gauche{
+
+.connexion-bouton-droite{
     background-color: #FF9D0B;
     font-family: 'Lilita One', cursive;
-    height: 70%;
+    height: 10%;
     width: 60%;
     border:solid #E1E1E1;
     color: white;
     border-radius: 10px;
+    margin-top: 10%;
 }
