@@ -116,7 +116,6 @@ exports.DelEleveToSession = async(req, res) => {
 
     // Copie tous les élèves présents dans la session 
     var eleves = session.eleve
-    var Key = Object.keys(session.eleve[0])
     
     // Supprime les élèves voulu dans la liste copiée
     for (let i = 0; i < del_eleves.length; i++) {
@@ -135,16 +134,51 @@ exports.DelEleveToSession = async(req, res) => {
 }
 
 
+exports.ConnexionToSession = async(req, res) => {
+    const{_idsession, id_co_session, mdp_session} = req.body
+    
+    let session = await Session.findById(_idsession)
+
+    let id_correct = false
+    
+
+    for (let i = 0; i < session.eleve.length; i++) {
+        // Vérifie si l'identifiant est dans la liste
+        if (Object.keys(session.eleve[i])[0] == id_co_session){
+            // Si identifiant est correct, variable mise à true pour dire que l'identifiant est bien dans la liste
+            id_correct = true
+
+            // Vérifie si le mdp correspond
+            if (String(Object.values(session.eleve[i])) == mdp_session){
+
+                // Renvoie un statut 200 pour dire que tout s'est bien passé
+                res.status(200).json({message : "Connexion réussie"})
+
+            }else{
+                // Renvoie un statut 210 pour dire qu'il y a une erreur
+                res.status(210).json({message : "Mot de passe incorrect"})
+            }}
+            
+    }
+    // Si l'identifiant est incorrect
+    if (id_correct == false) {
+        // Renvoie un statut 210 pour dire qu'il y a une erreur
+        res.status(210).json({message : "Identifiant incorrect"})
+    }
+}
 
 /* A mettre dans le body pour réussir à faire marcher les fonctions : 
 {
+    "_idsessionmodify":"",
     "_idsessiondelete":"",
     "nom_session":"",
-    "eleves" : [],
-    "_idprof":"",
-    "_idsessionmodify":"",
     "new_nom_session":"",
-    "new_eleves":["", ""], 
-    "del_eleves":["",""]
+    "eleves" : [],
+    "new_eleves":["", ""],
+    "del_eleves":["",""],
+    "_idprof":"", 
+    "_idsession":"", 
+    "id_co_session":"",
+    "mdp_session":""
 }
 */
