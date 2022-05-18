@@ -11,6 +11,7 @@ import VosStatistiques from './onglets/VosStatistiques'
 
 // import style 
 import './app_prof.css'
+
 class ProfApp extends Component {
     // différente route renvoyant un composant react
     constructor(props){
@@ -25,11 +26,10 @@ class ProfApp extends Component {
           <Router >
             <div className="app_prof">
               <LeftBarr/>
-
               <Switch>
-                <Route path="/app/vos_sessions" component={VosSessions}></Route>
-                <Route path="/app/creer_session" component={CreerSession}></Route>
-                <Route path="/app/vos_statistiques" component={VosStatistiques}></Route>
+                <Route path="/appProf/vos_sessions" component={VosSessions}></Route>
+                <Route path="/appProf/creer_session" component={CreerSession}></Route>
+                <Route path="/appProf/vos_statistiques" component={VosStatistiques}></Route>
               </Switch>
             </div>
           </Router>

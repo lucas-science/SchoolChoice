@@ -45,6 +45,11 @@ export default function App() {
 	cookies.set('resultatSTI2D', Math.round((scoreSTI2D/6)*100), { path: '/' });
 	cookies.set('resultatST2S', Math.round((scoreST2S/7)*100), { path: '/' });
 
+	cookies.set('Resultat', JSON.stringify({
+		general: Math.round((scoreGeneral/7)*100),
+		Sti: Math.round((scoreSTI2D/6)*100),
+		St2s: Math.round((scoreST2S/7)*100)
+	}))
 
 
 

@@ -2,13 +2,16 @@ input {
     border: none;
 }
 
+body {
+    background-color: #015958;
+}
+
 input:focus {
     border: none;
     outline: none;
 }
 
 .formulaire {
-    background-color: aquamarine;
     width: 90%;
     height: 90vh;
     display: flex;
@@ -20,7 +23,6 @@ input:focus {
 .creer_top {
     width: 100%;
     height: 80%;
-    background-color: blueviolet;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -32,7 +34,7 @@ input:focus {
 .creer_part1 {
     width: 40%;
     height: 60%;
-    background-color: rgb(73, 226, 43);
+    background-color: #0159580e;
     border: 5px solid #015958;
     border-radius: 5px;
     display: flex;
@@ -70,7 +72,7 @@ input:focus {
     width: 40%;
     height: 80%;
     padding: 0px 15px 0px 15px;
-    background-color: rgb(226, 43, 217);
+    background-color: #0159581e;
     border: 5px solid #015958;
     border-radius: 5px;
     display: flex;
@@ -80,7 +82,7 @@ input:focus {
 }
 
 .creer_liste_eleves {
-    background-color: aqua;
+    background-color: rgba(143, 250, 114, 0.283);
     width: 90%;
     height: 40%;
     display: flex;
@@ -112,7 +114,6 @@ input:focus {
 .creer_bottom {
     width: 100%;
     height: 20%;
-    background-color: rgb(23, 202, 178);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,9 +123,30 @@ input:focus {
     padding: 10px;
     border: none;
     background-color: #015958;
+    color: white;
 }
 
 .creer_submit_button:hover {
     background-color: #01413f;
     cursor: pointer;
+}
+
+
+/* List eleve */
+
+.session_created {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 20vh;
+}
+
+.create-session-table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 5px;
 }

@@ -5,10 +5,19 @@ import logo from './image/logo.png'
 import {Link} from 'react-router-dom'
 import './appspegeneral.css'
 import Cookies from 'universal-cookie';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 
 
 export default function App() {
-	
+	const { id } = useParams()
+	const cookies = new Cookies();
+
+	const h = useHistory()
+
+	if(!Boolean(cookies.get('connected'))){
+		h.push('/app/'+id)
+	}
 
 	const [questionencourt, setquestionencourt] = useState(0)
 
@@ -64,18 +73,15 @@ export default function App() {
 		
 	}
 
-
-	const test = () => {
-		console.log('nhdfzj')
+	const SendResultats = () => {
+		console.log('send')
 	}
 
 
-	const scrore = new Cookies();
-	console.log(scrore.get('Resultat').general)
+	console.log(cookies.get('Resultat').general)
 	return (
 		
 		<div className='app-general'>
-			
 			{montrerscore ? (
 				<div className='score-section'>
 					<Link to='/'>
@@ -85,9 +91,9 @@ export default function App() {
 						<div className='box-texte-general'>Voici t'es precendent resultat : </div>
 					<div >
 						<div>
-							<div className='resultat-filliere-scorre-G'>STI2D : {scrore.get('resultatSTI2D')}%</div>
-                            <div className='resultat-filliere-scorre-G'>GENERAL : {scrore.get('resultatgeneral')}%</div>
-                            <div className='resultat-filliere-scorre-G'>ST2S : {scrore.get('resultatST2S')}%</div>
+							<div className='resultat-filliere-scorre-G'>STI2D : {cookies.get('resultatSTI2D')}%</div>
+                            <div className='resultat-filliere-scorre-G'>GENERAL : {cookies.get('resultatgeneral')}%</div>
+                            <div className='resultat-filliere-scorre-G'>ST2S : {cookies.get('resultatST2S')}%</div>
 						</div>
 					</div>
 					<div className='box-texte-general'>Voici t'es resultats pour la General : </div>
@@ -105,10 +111,10 @@ export default function App() {
 							<div className='resultat-filliere-scorre-G'>TEST : %</div>
 						</div>
 					</div>
+					<input className='envoyer_resultat' type="button" value="Envoyer Resultats au professeur" onClick={SendResultats} />
 					<button className='bouton-recomencer'><Link to='/app'>
 						Recommencer
 						</Link></button>
-					<button onClick={test} >hey</button>
 				</div>
 			) : (
 				<>

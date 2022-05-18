@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './onglets.css'
 import './CreerSession.css'
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class CreerSession extends Component {
     constructor(props){
@@ -11,7 +15,11 @@ class CreerSession extends Component {
           changed:false,
           SessionName:'',
           NombreEleve:0,
-          formulaire_error_message:''
+          formulaire_error_message:'',
+          create:false,
+          session_id:'',
+          elevesMdp:[],
+          FinalEleve:[]
         }
       }
 
@@ -73,7 +81,25 @@ class CreerSession extends Component {
         if(!response){
           await this.DisplayMessageFewTime(1000,'formulaire_error_message','Veuillez remplir le formulaire correctement','' )
         } else {
-          // post data
+          console.log(cookies.get('token'))
+          axios.post('http://localhost:4000/create_session',{
+            nom_session:this.state.SessionName,
+            eleves:this.state.list_eleve,
+            token:cookies.get('token')
+          })
+          .then( res => {
+            const {data,status} = res
+            if(status === 200){
+              console.log(data)
+              this.setState({create:true})
+              this.setState({session_id:data.id_session})
+              this.setState({elevesMdp:data.listEleve})
+             
+            } else {
+              console.log("erreur")
+            }
+          })
+          .catch( err => console.log(err))
         }
 
         this.setState({list_eleve:[]})
@@ -85,6 +111,10 @@ class CreerSession extends Component {
     // différente route renvoyant un composant reac
     render() {
       const {changed} = this.state
+      const Created = this.state.create
+
+
+
       let ListEleve;
       
       if(changed){
@@ -103,38 +133,62 @@ class CreerSession extends Component {
           </div>
         )
       }
-
+      this.state.elevesMdp.map(e => Object.entries(e).map(([key,val]) => this.state.FinalEleve.push([key,val]) ))
+      console.log(this.state.FinalEleve)
       return (
         <div className='app_body'>
           <div className="formulaire">
-              <div className="creer_top">
-                <div className="creer_part1">
-                  <div className='creer_part1_a'>
-                    <p>Nom de la Session</p>
-                    <input className='creer_part1_input' name="SessionName" value={this.state.SessionName} onChange={this.handleInputChange} type="text" />
+            { Created ?(
+              <div className='session_created'>
+                <p><u><b>Votre Nouvelle Session</b></u> : {'http://localhost:3000/app/'+this.state.session_id}</p>
+                <table className='create-session-table'>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Mot de passe</th>
+                  </tr>
+                  {this.state.FinalEleve.map(([key,val])=> (
+                    <tr>
+                      <th>{key}</th>
+                      <th>{val}</th>
+                    </tr>
+                  ))}
+                </table>
+              </div>
+            ):(
+                <>
+                <div className="creer_top">
+                  <div className="creer_part1">
+                    <div className='creer_part1_a'>
+                      <p>Nom de la Session</p>
+                      <input className='creer_part1_input' name="SessionName" value={this.state.SessionName} onChange={this.handleInputChange} type="text" />
+                    </div>
+                    <div className='creer_part1_b'>
+                      <p>Nombre d'elèves</p>
+                      <input className='creer_part1_input' name="NombreEleve" value={this.state.NombreEleve} onChange={this.handleInputChange} type="number" />
+                    </div>
                   </div>
-                  <div className='creer_part1_b'>
-                    <p>Nombre d'elèves</p>
-                    <input className='creer_part1_input' name="NombreEleve" value={this.state.NombreEleve} onChange={this.handleInputChange} type="number" />
-                  </div>
-                </div>
-                <div className="creer_part2">
-                  <p>Donnez la liste de vos élèves, afin de leur attribuer un identifiant.</p>
-                  
-                  <div className="creer_liste_eleves">
-                    {ListEleve}
-                  </div>
+                  <div className="creer_part2">
+                    <p>Donnez la liste de vos élèves, afin de leur attribuer un identifiant.</p>
+                    
+                    <div className="creer_liste_eleves">
+                      {ListEleve}
+                    </div>
 
-                  <div className='creer_form_add_eleve'>
-                    <input type="text" name="eleve" onChange={this.handleInputChange} value={this.state.eleve} className='creer_textadd_eleve'/>
-                    <input type="submit" className='creer_buttonadd_eleve' onClick={this.addName}/>
+                    <div className='creer_form_add_eleve'>
+                      <input type="text" name="eleve" onChange={this.handleInputChange} value={this.state.eleve} className='creer_textadd_eleve'/>
+                      <input type="submit" className='creer_buttonadd_eleve' onClick={this.addName}/>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="creer_bottom">
-                <input value={this.state.eleve} onClick={this.SubmitForm} className='creer_submit_button' type="submit" value="Creer la Session"/>
-                <p>{this.state.formulaire_error_message}</p>
-              </div>
+                <div className="creer_bottom">
+                  <input onClick={this.SubmitForm} className='creer_submit_button' type="submit" value="Creer la Session"/>
+                  <p>{this.state.formulaire_error_message}</p>
+                </div>
+              </>
+            )
+
+            }
+
           </div>
         </div>
       );
