@@ -87,8 +87,8 @@ export default function App() {
 	function genpdf () {
 
 		const doc = new jsPDF();
-		doc.text("Voici t'es resultat :", 85, 20);
-		doc.text("T'es score de fillieres :", 30, 60);
+		doc.text("Voici tes resultats :", 85, 20);
+		doc.text("Tes score de fillieres :", 30, 60);
 		doc.text("STI2D :", 20, 90);
 		doc.text(45,90, STI2DPDF)
 		doc.text("%", 55, 90);
@@ -101,7 +101,7 @@ export default function App() {
 
 
 
-		doc.text("T'es score de specialité STI2D :", 30, 130);
+		doc.text("Tes score de specialités STI2D :", 30, 130);
 		doc.text("NSI :", 20, 170);
 		doc.text(NSIpdf , 40, 170);
 		doc.text("%", 50, 170);

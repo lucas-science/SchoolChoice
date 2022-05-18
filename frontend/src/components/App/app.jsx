@@ -58,8 +58,8 @@ export default function App() {
 	function genpdf () {
 
 		const doc = new jsPDF();
-		doc.text("Voici t'es resultat :", 85, 20);
-		doc.text("T'es score de fillieres :", 30, 60);
+		doc.text("Voici t'es resultats :", 85, 20);
+		doc.text("Tes score de fillieres :", 30, 60);
 		doc.text("STI2D :", 20, 90);
 		doc.text(45,90, STI2DPDF)
 		doc.text("%", 55, 90);
