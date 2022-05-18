@@ -9,6 +9,7 @@ import EleveApp from './components/App/app';
 import AppSpe from './components/App/appSpe';
 import AppSpeGeneral from './components/App/appSpegeneral';
 import AppspeSTI2D from './components/App/appspeSTI2D'
+
 import './App.css'; 
 import withAuth from './components/withAuth';
 
@@ -27,6 +28,7 @@ class App extends Component {
             <Route path="/appSpe" exact component={AppSpe}></Route>
             <Route path="/appSpeGeneral" exact component={AppSpeGeneral}></Route>
             <Route path="/appSpeSTI2D" exact component={AppspeSTI2D}></Route>
+
             <Route path="/appProf" component={withAuth(ProfApp)}></Route>
             <Route path="/create_account" component={CreerCompte}></Route>
             <Route path="/connexion_account" component={ConnexionAccount}></Route>

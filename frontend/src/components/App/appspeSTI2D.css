@@ -21,3 +21,17 @@
 }
 
 
+.pdfresultatSTI{
+    background-color: aqua;
+    height: 200vh;
+}
+
+.telechargerpdfSTI2D{
+    position: absolute;
+    bottom: 7%;
+    border-style:none;
+    border-radius: 5px;
+    background-color: #D8FFDB;
+    font-family: 'Lilita One', cursive;
+    padding: 1%;
+}
