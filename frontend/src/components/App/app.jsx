@@ -4,7 +4,7 @@ import './app.css'
 import logo from './image/logo.png'
 import {Link} from 'react-router-dom'
 import Cookies from 'universal-cookie';
-
+import jsPDF from 'jspdf'
 
 
 export default function App() {
@@ -41,16 +41,42 @@ export default function App() {
 
 	const cookies = new Cookies();
 
-	cookies.set('resultatgeneral', Math.round((scoreGeneral/7)*100), { path: '/' });
-	cookies.set('resultatSTI2D', Math.round((scoreSTI2D/6)*100), { path: '/' });
-	cookies.set('resultatST2S', Math.round((scoreST2S/7)*100), { path: '/' });
 
 	cookies.set('Resultat', JSON.stringify({
+
 		general: Math.round((scoreGeneral/7)*100),
 		Sti: Math.round((scoreSTI2D/6)*100),
 		St2s: Math.round((scoreST2S/7)*100)
 	}))
 
+
+	const STI2DPDF = String(Math.round((scoreSTI2D/6)*100))
+	const Genralpdf= String(Math.round((scoreGeneral/7)*100))
+	const St2spdf = String(Math.round((scoreST2S/7)*100))
+
+	
+
+
+	function genpdf () {
+
+		const doc = new jsPDF();
+		doc.text("Voici t'es resultats :", 85, 20);
+		doc.text("Tes score de fillieres :", 30, 60);
+		doc.text("STI2D :", 20, 90);
+		doc.text(45,90, STI2DPDF)
+		doc.text("%", 55, 90);
+		doc.text("GENERAL :", 85, 90);
+		doc.text(120,90, Genralpdf)
+		doc.text("%", 130, 90);
+		doc.text("ST2S :", 160, 90);
+		doc.text(180,90, St2spdf)
+		doc.text("%", 190, 90);
+
+
+		doc.text("Merci d'avoir utilisé SchoolChoice", 10, 110);
+
+		doc.save('resultat-SchoolChoice.pdf')
+	}
 
 
 	return (
@@ -88,6 +114,7 @@ export default function App() {
 							<div className='resultat-filliere-scorre'>{Math.round((scoreST2S/7)*100)}%</div>
 						</div>
 					</div>
+					<button className ='telechargerpdf' onClick={genpdf}> Download</button>
 				</div>
 			) : (
 				<>

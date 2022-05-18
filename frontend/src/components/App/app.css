@@ -235,3 +235,13 @@ a{
     border-radius: 5px;
     background-color: #D8FFDB;
 }
+
+.telechargerpdf{
+    position: absolute;
+    bottom: 1.5%;
+    border-style:none;
+    border-radius: 5px;
+    background-color: #D8FFDB;
+    font-family: 'Lilita One', cursive;
+    padding: 0.5%;
+}

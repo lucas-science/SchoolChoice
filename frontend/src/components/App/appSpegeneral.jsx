@@ -5,7 +5,7 @@ import logo from './image/logo.png'
 import {Link} from 'react-router-dom'
 import './appspegeneral.css'
 import Cookies from 'universal-cookie';
-
+import jsPDF from 'jspdf'
 
 export default function App() {
 	
@@ -70,8 +70,82 @@ export default function App() {
 	}
 
 
+
 	const scrore = new Cookies();
 	console.log(scrore.get('Resultat').general)
+
+	const STI2DPDF = String(scrore.get('Resultat').Sti)
+	const Genralpdf= String(scrore.get('Resultat').general)
+	const St2spdf = String(scrore.get('Resultat').St2s)
+	const NSIpdf = String( Math.round((scoreNSI/11)*100))
+	const SIpdf = String(Math.round((scoreSI/9)*100))
+	const Mathspdf = String( Math.round((scoreMaths/6)*100))
+
+	const PCpdf = String(Math.round((scorePC/6)*100))
+	const LLCERpdf = String(Math.round((scoreLLCER/5)*100))
+	const SESpdf = String( Math.round((scoreSES/4)*100))
+
+	const hlppdf = String(Math.round((scoreHLP/3)*100))
+	const svtpdf = String(Math.round((scoreSVT/2)*100))
+	const hgsppdf = String(Math.round((scoreHGGSP/6)*100))
+
+
+	function genpdf () {
+
+		const doc = new jsPDF();
+		doc.text("Voici tes resultats :", 85, 20);
+		doc.text("Tes score de fillieres :", 30, 60);
+		doc.text("STI2D :", 20, 90);
+		doc.text(45,90, STI2DPDF)
+		doc.text("%", 55, 90);
+		doc.text("GENERAL :", 85, 90);
+		doc.text(120,90, Genralpdf)
+		doc.text("%", 130, 90);
+		doc.text("ST2S :", 160, 90);
+		doc.text(180,90, St2spdf)
+		doc.text("%", 190, 90);
+
+
+
+		doc.text("Tes score de specialités STI2D :", 30, 130);
+		doc.text("NSI :", 20, 170);
+		doc.text(NSIpdf , 40, 170);
+		doc.text("%", 50, 170);
+		doc.text("SI:", 85, 170);
+		doc.text(105,170, SIpdf)
+		doc.text("%", 115, 170);
+		doc.text("MATHS:", 150, 170);
+		doc.text(175,170,Mathspdf)
+		doc.text("%", 185, 170);
+
+		doc.text("PC:", 20, 190);
+		doc.text(PCpdf  , 40,190);
+		doc.text("%", 50, 190);
+		doc.text("LLCER:", 85, 190);
+		doc.text(110,190, LLCERpdf)
+		doc.text("%", 120,190);
+		doc.text("SES :", 150, 190);
+		doc.text(175,190,SESpdf )
+		doc.text("%", 185, 190);
+
+		doc.text("HLP :", 20, 210);
+		doc.text(hlppdf   , 40,210);
+		doc.text("%", 50, 210);
+		doc.text("SVT:", 85, 210);
+		doc.text(110,210, svtpdf )
+		doc.text("%", 120,210);
+		doc.text("HGGSP:", 150, 210);
+		doc.text(175,210,hgsppdf )
+		doc.text("%", 185, 210);
+
+		doc.text("Merci d'avoir utilisé SchoolChoice", 10, 250);
+
+		doc.save('resultat-SchoolChoice.pdf')
+	}
+
+
+
+
 	return (
 		
 		<div className='app-general'>
@@ -85,9 +159,9 @@ export default function App() {
 						<div className='box-texte-general'>Voici t'es precendent resultat : </div>
 					<div >
 						<div>
-							<div className='resultat-filliere-scorre-G'>STI2D : {scrore.get('resultatSTI2D')}%</div>
-                            <div className='resultat-filliere-scorre-G'>GENERAL : {scrore.get('resultatgeneral')}%</div>
-                            <div className='resultat-filliere-scorre-G'>ST2S : {scrore.get('resultatST2S')}%</div>
+							<div className='resultat-filliere-scorre-G'>STI2D : {scrore.get('Resultat').Sti}%</div>
+                            <div className='resultat-filliere-scorre-G'>GENERAL : {scrore.get('Resultat').general}%</div>
+                            <div className='resultat-filliere-scorre-G'>ST2S : {scrore.get('Resultat').St2s}%</div>
 						</div>
 					</div>
 					<div className='box-texte-general'>Voici t'es resultats pour la General : </div>
@@ -108,7 +182,8 @@ export default function App() {
 					<button className='bouton-recomencer'><Link to='/app'>
 						Recommencer
 						</Link></button>
-					<button onClick={test} >hey</button>
+						<button className ='telechargerpdfgeneral' onClick={genpdf}> Download</button>
+
 				</div>
 			) : (
 				<>

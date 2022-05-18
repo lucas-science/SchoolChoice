@@ -18,6 +18,7 @@ import AppSpeAvecLien from './components/AppAvecLien/appSpe'
 import AppSpeGeneralAvecLien from './components/AppAvecLien/appSpegeneral'
 import AppspeSTI2DAvecLien from './components/AppAvecLien/appspeSTI2D'
 
+
 import './App.css'; 
 import withAuth from './components/withAuth';
 
@@ -38,11 +39,13 @@ class App extends Component {
             <Route path="/appSpeGeneral" exact component={AppSpeGeneral}></Route>
             <Route path="/appSpeSTI2D" exact component={AppspeSTI2D}></Route>
 
+
             <Route path="/app/:id" component={EleveAppAvecLien}></Route>
             <Route path="/appSpe/:id" component={AppSpeAvecLien}></Route>
             <Route path="/appSpeGeneral/:id" component={AppSpeGeneralAvecLien}></Route>
             <Route path="/appSpeSTI2D/:id" component={AppspeSTI2DAvecLien}></Route>
           
+
             <Route path="/appProf" component={withAuth(ProfApp)}></Route>
             <Route path="/create_account" component={CreerCompte}></Route>
             <Route path="/connexion_account" component={ConnexionAccount}></Route>
