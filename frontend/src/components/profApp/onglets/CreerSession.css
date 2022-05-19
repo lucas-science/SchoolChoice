@@ -186,3 +186,17 @@ input:focus {
 th {
     padding: 5px;
 }
+
+.DownloadExcelFile {
+    padding: 5%;
+    background-color: #015958;
+    color: rgba(255, 255, 255, 0.942);
+    border: none;
+    border-radius: 3px;
+    transition: .25s;
+}
+
+.DownloadExcelFile:hover {
+    border-radius: 7px;
+    cursor: pointer;
+}

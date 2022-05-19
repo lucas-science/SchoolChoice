@@ -3,6 +3,8 @@ import './onglets.css'
 import './CreerSession.css'
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import * as FileSaver from "file-saver";
+import * as XLSX from "xlsx";
 
 const cookies = new Cookies();
 
@@ -126,13 +128,20 @@ class CreerSession extends Component {
         this.setState({NombreEleve:0})
       }
 
+      exportToCSV = (Data, fileName) => {
+        const ws = XLSX.utils.json_to_sheet(Data);
+        const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+        const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+        const data = new Blob([excelBuffer], { type: '.xlsx' });
+        FileSaver.saveAs(data, fileName + '.xlsx');
+      };
     // différente route renvoyant un composant reac
     render() {
       const {changed} = this.state
       const Created = this.state.create
 
+      // Create the list preview of student(s)
       let ListEleve;
-      
       if(changed){
         ListEleve = this.state.list_eleve.map((eleve, index)=> 
           <div className="creer_student" key={index}>
@@ -150,9 +159,16 @@ class CreerSession extends Component {
         )
       }
 
-
+      // Create the table id | password
       this.state.FinalEleve = []
       this.state.elevesMdp.map(e => Object.entries(e).map(([key,val]) => this.state.FinalEleve.push([key,val]) ))
+
+      // Create The File Data
+      const FileExcel = [['Name', 'Mot de passe']]
+      for(let i of this.state.FinalEleve){
+        FileExcel.push(i)
+      }
+
       return (
         <div className='app_body'>
           <div className="formulaire">
@@ -174,6 +190,7 @@ class CreerSession extends Component {
                     </tr>
                   ))}
                 </table>
+                <button className='DownloadExcelFile' onClick={(e) => this.exportToCSV(FileExcel, "Identifiants_élèves")}>Exportez le tableau en fichier Excel</button>
               </div>
             ):(
                 <>
