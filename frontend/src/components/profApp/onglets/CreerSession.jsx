@@ -19,7 +19,8 @@ class CreerSession extends Component {
           create:false,
           session_id:'',
           elevesMdp:[],
-          FinalEleve:[]
+          FinalEleve:[],
+          isCopied:false
         }
       }
 
@@ -72,6 +73,24 @@ class CreerSession extends Component {
         }
       }
 
+      MessageCopyClicked = async () => {
+        console.log("copied")
+        this.setState({isCopied:true})
+        await this.sleep(1000)
+        this.setState({isCopied:false})
+      }
+      handleCopyClick = async () => {
+        const text = 'http://localhost:3000/app/'+this.state.session_id
+        if ('clipboard' in navigator) {
+          await navigator.clipboard.writeText(text);
+          this.MessageCopyClicked()
+        } else {
+          document.execCommand('copy', true, text);
+          this.MessageCopyClicked()
+        }
+
+      }
+
       SubmitForm = async (event) => {
         event.preventDefault();
         const {list_eleve,SessionName,NombreEleve} = this.state
@@ -107,40 +126,42 @@ class CreerSession extends Component {
         this.setState({NombreEleve:0})
       }
 
-      
     // différente route renvoyant un composant reac
     render() {
       const {changed} = this.state
       const Created = this.state.create
-
-
 
       let ListEleve;
       
       if(changed){
         ListEleve = this.state.list_eleve.map((eleve, index)=> 
           <div className="creer_student" key={index}>
-            <p>{eleve}</p>
-            <input type="submit"  value="delete" onClick={this.deleteName} key={index}/>
+            <p>{`${index}. ${eleve}`}</p>
+            <input type="submit" className='creer_session_delete_student' value="Delete" onClick={this.deleteName} key={index}/>
           </div>
         )
         this.setState({changed:false})
       } else{
         ListEleve = this.state.list_eleve.map((eleve, index)=> 
           <div className="creer_student" key={index}>
-            <p>{eleve}</p>
-            <input type="submit"  value="delete" onClick={this.deleteName} key={index}/>
+            <p>{`${index}. ${eleve}`}</p>
+            <input type="submit" className='creer_session_delete_student' value="Delete" onClick={this.deleteName} key={index}/>
           </div>
         )
       }
+
+
+      this.state.FinalEleve = []
       this.state.elevesMdp.map(e => Object.entries(e).map(([key,val]) => this.state.FinalEleve.push([key,val]) ))
-      console.log(this.state.FinalEleve)
       return (
         <div className='app_body'>
           <div className="formulaire">
             { Created ?(
               <div className='session_created'>
-                <p><u><b>Votre Nouvelle Session</b></u> : {'http://localhost:3000/app/'+this.state.session_id}</p>
+              <div className='creer_session_copybox'>
+                <input type="text" className='copyValue' value={'http://localhost:3000/app/'+this.state.session_id}></input>
+                <input type="button" className='copyValue_btn' value={this.state.isCopied ? ("Copied !"):("Copy")} onClick={this.handleCopyClick}/>
+              </div>
                 <table className='create-session-table'>
                   <tr>
                     <th>Nom</th>
@@ -160,7 +181,7 @@ class CreerSession extends Component {
                   <div className="creer_part1">
                     <div className='creer_part1_a'>
                       <p>Nom de la Session</p>
-                      <input className='creer_part1_input' name="SessionName" value={this.state.SessionName} onChange={this.handleInputChange} type="text" />
+                      <input className='creer_part1_input' name="SessionName" value={this.state.SessionName} onChange={this.handleInputChange} type="text" placeholder='Un nom de session ...' />
                     </div>
                     <div className='creer_part1_b'>
                       <p>Nombre d'elèves</p>
@@ -175,8 +196,8 @@ class CreerSession extends Component {
                     </div>
 
                     <div className='creer_form_add_eleve'>
-                      <input type="text" name="eleve" onChange={this.handleInputChange} value={this.state.eleve} className='creer_textadd_eleve'/>
-                      <input type="submit" className='creer_buttonadd_eleve' onClick={this.addName}/>
+                      <input type="text" name="eleve" onChange={this.handleInputChange} value={this.state.eleve} placeholder="Student Name to add ..." className='creer_textadd_eleve'/>
+                      <input type="submit" value="Ajouter" className='creer_buttonadd_eleve' onClick={this.addName}/>
                     </div>
                   </div>
                 </div>

@@ -82,7 +82,7 @@ input:focus {
 }
 
 .creer_liste_eleves {
-    background-color: rgba(143, 250, 114, 0.283);
+    background-color: rgba(231, 231, 231, 0.786);
     width: 90%;
     height: 40%;
     display: flex;
@@ -90,10 +90,12 @@ input:focus {
     align-items: center;
     flex-direction: column;
     overflow-y: scroll;
+    border: 5px solid #003837a8;
+    border-radius: 5px;
 }
 
 .creer_student {
-    background-color: bisque;
+    background-color: rgba(114, 127, 94, 0.164);
     padding: 7px;
     width: 65%;
     margin-top: 3.75px;
@@ -106,6 +108,23 @@ input:focus {
     width: 70%;
     display: flex;
     justify-content: center;
+}
+
+.creer_textadd_eleve {
+    padding: 2.5%;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.creer_buttonadd_eleve:hover {
+    cursor: pointer;
+}
+
+.creer_buttonadd_eleve {
+    border-radius: 0px 5px 5px 0px;
+}
+
+.creer_session_delete_student {
+    border-radius: 1.5%;
 }
 
 
@@ -139,12 +158,29 @@ input:focus {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 20vh;
+    height: 50vh;
+}
+
+.creer_session_copybox {
+    display: flex;
 }
 
 .create-session-table {
     border: 1px solid black;
     border-collapse: collapse;
+}
+
+.copyValue {
+    padding: 3.5%;
+    border-radius: 1.5%;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.copyValue_btn:hover {
+    cursor: pointer;
+    border-radius: 0px 5px 5px 0px;
+    background-color: #0159587c;
+    color: rgba(255, 255, 255, 0.894);
 }
 
 th {
