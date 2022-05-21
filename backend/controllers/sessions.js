@@ -3,6 +3,7 @@ const User = require("../models/user")
 const Session = require("../models/Session")
 const jwt = require('jsonwebtoken');
 
+
 function generateP(length) {
     let pass = '';
     const str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
@@ -199,8 +200,10 @@ exports.ConnexionToSession = async(req, res) => {
 
 
 exports.ViewSessions = async(req, res) =>{
-    // initialisation des variables
+    // Récupère les infos transmises
     const {_idprof} = req.body
+
+    // Cherche le prof et ses sessions
     let prof = await User.findById(_idprof)
     let sessions = prof.sessions
     let infos_sessions = []
@@ -222,6 +225,47 @@ exports.ViewSessions = async(req, res) =>{
     // Renvoie un statut 200 et les infos des sessions du prof 
     res.status(200).send(infos_sessions)
 }
+
+exports.SaveResultatsEleve = async(req, res) =>{
+    // Récupère les infos transmises
+    const {filiere, spes, _idsession, id_co_session, mdp_session} = req.body
+
+    // Cherche la session ciblée
+    let session = await Session.findById(_idsession)
+
+    // Créer une liste pour mettre à jour celle de la session
+    let eleve = []
+
+    // Date et heure
+    var now = new Date()
+    let month = now.getMonth()+1
+    let date = String(now.getDate()+"/"+month+"/"+now.getFullYear())
+    
+    // Parcours session et met a jour l'eleve concerné 
+    for (let i = 0; i<session.eleve.length; i++) {
+
+        if (Object.keys(session.eleve[i])[0]==id_co_session && String(Object.values(session.eleve[i]))==mdp_session){
+            eleve.push({
+
+                        [id_co_session]: mdp_session, 
+                        "date" : date,
+                        "horaire": now.getHours()+":"+now.getMinutes(),
+                        "filiere" : filiere, 
+                        "spes" : spes
+                })
+            }else{
+                    eleve.push(session.eleve[i])
+                }
+        
+}
+    // Met à jour la session du prof
+    await Session.findByIdAndUpdate(_idsession, {eleve : eleve})
+
+    // Renvoie un statut 200 pour dire que tout s'est bien passé
+    res.status(200).send()
+}
+
+
 /* A mettre dans le body pour réussir à faire marcher les fonctions : 
 {
     "_idsessionmodify":"",

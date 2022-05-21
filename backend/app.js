@@ -8,7 +8,7 @@ require('dotenv').config();
 const QCM = require('./qcm.json')
     // import User controllers
 const { CreateAccount, ConnexionAccount } = require('./controllers/user')
-const { CreateSession, DeleteSession, ModifySessionName, AddEleveToSession, DelEleveToSession, ConnexionToSession, ViewSessions } = require('./controllers/sessions')
+const { CreateSession, DeleteSession, ModifySessionName, AddEleveToSession, DelEleveToSession, ConnexionToSession, ViewSessions, SaveResultatsEleve } = require('./controllers/sessions')
 
 const jwt = require('jsonwebtoken');
 
@@ -54,6 +54,7 @@ app.use('/add_eleve_to_session', AddEleveToSession)
 app.use('/del_eleve_to_session', DelEleveToSession)
 app.use('/connexion_to_session', ConnexionToSession)
 app.use('/view_sessions', ViewSessions)
+app.use('/save_resultats', SaveResultatsEleve)
 
 app.use('/auth', (req, res, next) => {
     const token =
