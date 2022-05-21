@@ -197,6 +197,27 @@ exports.ConnexionToSession = async(req, res) => {
     }
 }
 
+
+exports.ViewSessions = async(req, res) =>{
+    const {_idprof} = req.body
+    let prof = await User.findById(_idprof)
+    let sessions = prof.sessions
+    let infos_sessions = []
+    let eleves = []
+
+    for (let i = 0; i < sessions.length; i++) {
+        let current_session = await Session.findById(sessions[i])
+        for (let j = 0; j < current_session.eleve.length; j++) {
+            eleves.push({"eleve": current_session.eleve[j]})
+        }
+        
+        let infos_json = {"nom": current_session.nom, "eleve": eleves} 
+        infos_sessions.push(infos_json)
+        eleves = []
+    }
+
+    res.status(200).send(infos_sessions)
+}
 /* A mettre dans le body pour réussir à faire marcher les fonctions : 
 {
     "_idsessionmodify":"",
