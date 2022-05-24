@@ -28,51 +28,36 @@ exports.CreateSession = async(req, res) => {
 
     // Créer une session grace aux éléments présent dans le body
     const { nom_session, eleves } = req.body
+    const { _idprof } = res.locals
 
-    const token =
-        req.body.token ||
-        req.query.token ||
-        req.headers['x-access-token'] ||
-        req.cookies.token;
-    // si il n'y a pas de cookie
-    if (!token) {
-        res.status(400).json({ message: "Vous n'êtes pas autorisé" });
-    } else {
-        // si il y a des cookies, vérifier s'ils sont encore valide avec la fonction du package JSONwebtoken
-        jwt.verify(token, process.env.JSW_SECRET, async(err, decoded) => {
-            if (err) {
-                res.status(401).send({ error: "invalide token" });
-            } else {
-                // si les cookie sont validé, passé à la prochaine fonction grâce à "next()"
+    // si les cookie sont validé, passé à la prochaine fonction grâce à "next()"
 
-                let eleves_mdp = []
-                eleves.forEach(eleve => {
-                    eleves_mdp.push({
-                        [eleve]: generateP(4)
-                    })
-                });
+    let eleves_mdp = []
+    eleves.forEach(eleve => {
+        eleves_mdp.push({
+            [eleve]: generateP(4)
+        })
+    });
 
-                const session = new Session({
-                    nom: nom_session,
-                    eleve: eleves_mdp
-                })
-                await session.save()
+    const session = new Session({
+        nom: nom_session,
+        eleve: eleves_mdp
+    })
+    await session.save()
 
-                // Met à jour la table du professeur
-                const resultat = await User.findByIdAndUpdate(decoded.userId, {
-                    $push: {
-                        sessions: session.id
-                    }
-                })
+    // Met à jour la table du professeur
+    const resultat = await User.findByIdAndUpdate(decoded.userId, {
+        $push: {
+            sessions: session.id
+        }
+    })
 
-                // Renvoie un statut 200 pour dire que tout s'est bien passé
-                res.status(200).send({
-                    id_session: resultat.sessions.slice(-1)[0],
-                    listEleve: eleves_mdp
-                })
-            }
-        });
-    }
+    // Renvoie un statut 200 pour dire que tout s'est bien passé
+    res.status(200).send({
+        id_session: resultat.sessions.slice(-1)[0],
+        listEleve: eleves_mdp
+    })
+
 }
 
 exports.DeleteSession = async(req, res) => {
@@ -81,7 +66,8 @@ exports.DeleteSession = async(req, res) => {
     param : idsession, idprof
     */
 
-    const { _idsessiondelete, _idprof } = req.body
+    const { _idsessiondelete } = req.body
+    const { _idprof } = res.locals
         // Supprime une session grace aux éléments présent dans le body
     await Session.findByIdAndDelete(_idsessiondelete)
 
@@ -202,12 +188,11 @@ exports.ConnexionToSession = async(req, res) => {
 
 exports.ViewSessions = async(req, res, next) => {
     // Récupère les infos transmises
-    const { _idprof } = req.body
-        // Cherche le prof et ses sessions
-    console.log(_idprof)
+    const { _idprof } = res.locals
+
+    // Cherche le prof et ses sessions
     let prof = await User.findById(_idprof)
     const sessions = prof.sessions
-    console.log(sessions)
     let infos_sessions = []
     let eleves = []
 
