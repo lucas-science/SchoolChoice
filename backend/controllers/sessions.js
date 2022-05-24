@@ -2,6 +2,7 @@ let express = require('express')
 const User = require("../models/user")
 const Session = require("../models/Session")
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 
 function generateP(length) {
@@ -199,36 +200,41 @@ exports.ConnexionToSession = async(req, res) => {
 }
 
 
-exports.ViewSessions = async(req, res) =>{
+exports.ViewSessions = async(req, res, next) => {
     // Récupère les infos transmises
-    const {_idprof} = req.body
-
-    // Cherche le prof et ses sessions
+    const { _idprof } = req.body
+        // Cherche le prof et ses sessions
+    console.log(_idprof)
     let prof = await User.findById(_idprof)
-    let sessions = prof.sessions
+    const sessions = prof.sessions
+    console.log(sessions)
     let infos_sessions = []
     let eleves = []
 
     // Parcours les sessions du prof et copie toutes les données dans infos_sessions
     for (let i = 0; i < sessions.length; i++) {
         let current_session = await Session.findById(sessions[i])
-        for (let j = 0; j < current_session.eleve.length; j++) {
-            eleves.push({"eleve": current_session.eleve[j]})
-        }
-        
+        try {
+            for (let j = 0; j < current_session.eleve.length; j++) {
+                eleves.push({ "eleve": current_session.eleve[j] })
+            }
 
-        let infos_json = {"nom": current_session.nom, "eleve": eleves} 
-        infos_sessions.push(infos_json)
-        eleves = []
+            let infos_json = { "nom": current_session.nom, "eleve": eleves }
+            infos_sessions.push(infos_json)
+            eleves = []
+        } catch (e) {
+            console.log(e)
+        }
+
     }
 
     // Renvoie un statut 200 et les infos des sessions du prof 
     res.status(200).send(infos_sessions)
 }
 
-exports.SaveResultatsEleve = async(req, res) =>{
+exports.SaveResultatsEleve = async(req, res) => {
     // Récupère les infos transmises
-    const {filiere, spes, _idsession, id_co_session, mdp_session} = req.body
+    const { filiere, spes, _idsession, id_co_session, mdp_session } = req.body
 
     // Cherche la session ciblée
     let session = await Session.findById(_idsession)
@@ -238,28 +244,28 @@ exports.SaveResultatsEleve = async(req, res) =>{
 
     // Date et heure
     var now = new Date()
-    let month = now.getMonth()+1
-    let date = String(now.getDate()+"/"+month+"/"+now.getFullYear())
-    
-    // Parcours session et met a jour l'eleve concerné 
-    for (let i = 0; i<session.eleve.length; i++) {
+    let month = now.getMonth() + 1
+    let date = String(now.getDate() + "/" + month + "/" + now.getFullYear())
 
-        if (Object.keys(session.eleve[i])[0]==id_co_session && String(Object.values(session.eleve[i]))==mdp_session){
+    // Parcours session et met a jour l'eleve concerné 
+    for (let i = 0; i < session.eleve.length; i++) {
+
+        if (Object.keys(session.eleve[i])[0] == id_co_session && String(Object.values(session.eleve[i])) == mdp_session) {
             eleve.push({
 
-                        [id_co_session]: mdp_session, 
-                        "date" : date,
-                        "horaire": now.getHours()+":"+now.getMinutes(),
-                        "filiere" : filiere, 
-                        "spes" : spes
-                })
-            }else{
-                    eleve.push(session.eleve[i])
-                }
-        
-}
+                [id_co_session]: mdp_session,
+                "date": date,
+                "horaire": now.getHours() + ":" + now.getMinutes(),
+                "filiere": filiere,
+                "spes": spes
+            })
+        } else {
+            eleve.push(session.eleve[i])
+        }
+
+    }
     // Met à jour la session du prof
-    await Session.findByIdAndUpdate(_idsession, {eleve : eleve})
+    await Session.findByIdAndUpdate(_idsession, { eleve: eleve })
 
     // Renvoie un statut 200 pour dire que tout s'est bien passé
     res.status(200).send()
