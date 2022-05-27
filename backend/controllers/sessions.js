@@ -54,7 +54,7 @@ exports.CreateSession = async(req, res) => {
 
     // Renvoie un statut 200 pour dire que tout s'est bien passé
     res.status(200).send({
-        id_session: resultat.sessions.slice(-1)[0],
+        id_session: session.id,
         listEleve: eleves_mdp
     })
 
@@ -157,9 +157,9 @@ exports.ConnexionToSession = async(req, res) => {
     let session = await Session.findById(_idsession)
 
     let id_correct = false
+    console.log(session)
 
     try {
-        console.log(session)
         for (let i = 0; i < session.eleve.length; i++) {
             // Vérifie si l'identifiant est dans la liste
             if (Object.keys(session.eleve[i])[0] == id_co_session) {
@@ -167,7 +167,7 @@ exports.ConnexionToSession = async(req, res) => {
                 id_correct = true
 
                 // Vérifie si le mdp correspond
-                if (String(Object.values(session.eleve[i])) == mdp_session) {
+                if ((Object.values(session.eleve[i]))[0] == mdp_session) {
 
                     // Renvoie un statut 200 pour dire que tout s'est bien passé
                     res.status(200).json({ message: "Connexion réussie" })
@@ -187,10 +187,7 @@ exports.ConnexionToSession = async(req, res) => {
     } catch (err) {
         console.log(err)
     }
-
-
 }
-
 
 exports.ViewSessions = async(req, res, next) => {
     // Récupère les infos transmises
@@ -206,7 +203,7 @@ exports.ViewSessions = async(req, res, next) => {
     for (let i = 0; i < sessions.length; i++) {
         let current_session = await Session.findById(sessions[i])
         try {
-            for (let j = 0; j < current_session.eleve.length; j++) {
+            for (let j = 0; j < current_session.eleve.length - 1; j++) {
                 eleves.push({ "eleve": current_session.eleve[j] })
             }
 
@@ -262,6 +259,13 @@ exports.SaveResultatsEleve = async(req, res) => {
     res.status(200).send()
 }
 
+exports.SendStats = async(req, res) => {
+    const { _idsession_stats } = req.body
+
+    let session = await Session.findById(_idsession_stats)
+
+    let eleve = session.eleve
+}
 
 /* A mettre dans le body pour réussir à faire marcher les fonctions : 
 {
