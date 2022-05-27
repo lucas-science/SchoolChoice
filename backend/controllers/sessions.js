@@ -164,9 +164,9 @@ exports.ConnexionToSession = async(req, res) => {
         if (Object.keys(session.eleve[i])[0] == id_co_session) {
             // Si identifiant est correct, variable mise à true pour dire que l'identifiant est bien dans la liste
             id_correct = true
-
+            
             // Vérifie si le mdp correspond
-            if (String(Object.values(session.eleve[i])) == mdp_session) {
+            if ((Object.values(session.eleve[i]))[0] == mdp_session) {
 
                 // Renvoie un statut 200 pour dire que tout s'est bien passé
                 res.status(200).json({ message: "Connexion réussie" })
@@ -256,6 +256,13 @@ exports.SaveResultatsEleve = async(req, res) => {
     res.status(200).send()
 }
 
+exports.SendStats = async(req, res) => {
+    const {_idsession_stats} = req.body
+
+    let session = await Session.findById(_idsession_stats)
+
+    let eleve = session.eleve
+}
 
 /* A mettre dans le body pour réussir à faire marcher les fonctions : 
 {
