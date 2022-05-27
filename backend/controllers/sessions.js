@@ -46,7 +46,7 @@ exports.CreateSession = async(req, res) => {
     await session.save()
 
     // Met à jour la table du professeur
-    const resultat = await User.findByIdAndUpdate(decoded.userId, {
+    const resultat = await User.findByIdAndUpdate(_idprof, {
         $push: {
             sessions: session.id
         }
@@ -158,31 +158,37 @@ exports.ConnexionToSession = async(req, res) => {
 
     let id_correct = false
 
+    try {
+        console.log(session)
+        for (let i = 0; i < session.eleve.length; i++) {
+            // Vérifie si l'identifiant est dans la liste
+            if (Object.keys(session.eleve[i])[0] == id_co_session) {
+                // Si identifiant est correct, variable mise à true pour dire que l'identifiant est bien dans la liste
+                id_correct = true
 
-    for (let i = 0; i < session.eleve.length; i++) {
-        // Vérifie si l'identifiant est dans la liste
-        if (Object.keys(session.eleve[i])[0] == id_co_session) {
-            // Si identifiant est correct, variable mise à true pour dire que l'identifiant est bien dans la liste
-            id_correct = true
+                // Vérifie si le mdp correspond
+                if (String(Object.values(session.eleve[i])) == mdp_session) {
 
-            // Vérifie si le mdp correspond
-            if (String(Object.values(session.eleve[i])) == mdp_session) {
+                    // Renvoie un statut 200 pour dire que tout s'est bien passé
+                    res.status(200).json({ message: "Connexion réussie" })
 
-                // Renvoie un statut 200 pour dire que tout s'est bien passé
-                res.status(200).json({ message: "Connexion réussie" })
-
-            } else {
-                // Renvoie un statut 210 pour dire qu'il y a une erreur
-                res.status(210).json({ message: "Mot de passe incorrect" })
+                } else {
+                    // Renvoie un statut 210 pour dire qu'il y a une erreur
+                    res.status(210).json({ message: "Mot de passe incorrect" })
+                }
             }
-        }
 
+        }
+        // Si l'identifiant est incorrect
+        if (id_correct == false) {
+            // Renvoie un statut 210 pour dire qu'il y a une erreur
+            res.status(210).json({ message: "Identifiant incorrect" })
+        }
+    } catch (err) {
+        console.log(err)
     }
-    // Si l'identifiant est incorrect
-    if (id_correct == false) {
-        // Renvoie un statut 210 pour dire qu'il y a une erreur
-        res.status(210).json({ message: "Identifiant incorrect" })
-    }
+
+
 }
 
 
