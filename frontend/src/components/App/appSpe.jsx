@@ -19,13 +19,13 @@ export default function AppSpe() {
 				<button className='boutton'>
 					
 				<Link to='/AppSpeSTI2D'>
-					STI2D	
+					STI2D			{/* Renvoie le questionnaire pour le choix des spe en stiD2*/}
             	</Link>
 							
 				</button>
 				<button className='boutton'>
 				<Link to='/AppSpeGeneral'>
-					GENERAL
+					GENERAL				{/* Renvoie le questionnaire pour le choix des spe en general*/}
             	</Link>	
 				</button>
 			</div>

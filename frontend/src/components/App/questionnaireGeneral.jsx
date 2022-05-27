@@ -5,10 +5,10 @@ const questions = [
 
 
 	{
-		questiontexte:  "As-tu un esprit logique ?",
+		questiontexte:  "As-tu un esprit logique ?",		// questionn a afficher
 		reponse: [
-            { reponsetexte: <img className='coeur' src={coeur} alt="oui"/> , filiere : ["SI","Maths","NSI","PC"]},
-            { reponsetexte: <img className='croix' src={croix} alt="non"/>, filiere : [	]},
+            { reponsetexte: <img className='coeur' src={coeur} alt="oui"/> , filiere : ["SI","Maths","NSI","PC"]},		// resultat a augmenter si coeur est cliquer
+            { reponsetexte: <img className='croix' src={croix} alt="non"/>, filiere : [	]},			// resultat a augmenter si croix est cliquer 
 		],
 	},
 
