@@ -1,6 +1,9 @@
 let express = require('express')
 const User = require("../models/user")
 const Session = require("../models/Session")
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+
 
 function generateP(length) {
     let pass = '';
@@ -24,7 +27,10 @@ exports.CreateSession = async(req, res) => {
     */
 
     // Créer une session grace aux éléments présent dans le body
-    const { nom_session, eleves, _idprof } = req.body
+    const { nom_session, eleves } = req.body
+    const { _idprof } = res.locals
+
+    // si les cookie sont validé, passé à la prochaine fonction grâce à "next()"
 
     let eleves_mdp = []
     eleves.forEach(eleve => {
@@ -32,7 +38,7 @@ exports.CreateSession = async(req, res) => {
             [eleve]: generateP(4)
         })
     });
-    
+
     const session = new Session({
         nom: nom_session,
         eleve: eleves_mdp
@@ -40,14 +46,18 @@ exports.CreateSession = async(req, res) => {
     await session.save()
 
     // Met à jour la table du professeur
-    await User.findByIdAndUpdate(_idprof, {
+    const resultat = await User.findByIdAndUpdate(_idprof, {
         $push: {
             sessions: session.id
         }
     })
 
     // Renvoie un statut 200 pour dire que tout s'est bien passé
-    res.status(200).send()
+    res.status(200).send({
+        id_session: session.id,
+        listEleve: eleves_mdp
+    })
+
 }
 
 exports.DeleteSession = async(req, res) => {
@@ -56,7 +66,8 @@ exports.DeleteSession = async(req, res) => {
     param : idsession, idprof
     */
 
-    const { _idsessiondelete, _idprof } = req.body
+    const { _idsessiondelete } = req.body
+    const { _idprof } = res.locals
         // Supprime une session grace aux éléments présent dans le body
     await Session.findByIdAndDelete(_idsessiondelete)
 
@@ -79,14 +90,14 @@ exports.DeleteSession = async(req, res) => {
 }
 
 exports.ModifySessionName = async(req, res) => {
-    var { _idsessionmodify, new_nom_session} = req.body
+    var { _idsessionmodify, new_nom_session } = req.body
 
     // Met à jour le nom de la session Si on le modifie
-    if (new_nom_session != "" ) {
+    if (new_nom_session != "") {
         await Session.findByIdAndUpdate(_idsessionmodify, {
-            nom : new_nom_session 
-            })
-        }
+            nom: new_nom_session
+        })
+    }
 
     // Renvoie un statut 200 pour dire que tout s'est bien passé
     res.status(200).send()
@@ -94,77 +105,166 @@ exports.ModifySessionName = async(req, res) => {
 }
 
 exports.AddEleveToSession = async(req, res) => {
-    var { _idsessionmodify, new_eleves} = req.body
+    var { _idsessionmodify, new_eleves } = req.body
 
     // rajoute les élèves avec un mdp généré aléatoirement 
     let eleves_mdp = []
     new_eleves.forEach(async nom_eleve => {
-        await Session.findByIdAndUpdate(_idsessionmodify, {$push: {
-            eleve: {[nom_eleve]: generateP(4)}
-        }})
+        await Session.findByIdAndUpdate(_idsessionmodify, {
+            $push: {
+                eleve: {
+                    [nom_eleve]: generateP(4)
+                }
+            }
+        })
     })
-    
+
     // Renvoie un statut 200 pour dire que tout s'est bien passé
     res.status(200).send()
 }
 
 exports.DelEleveToSession = async(req, res) => {
-    var { _idsessionmodify, del_eleves} = req.body
+    var { _idsessionmodify, del_eleves } = req.body
 
     // Cherche la liste des élèves dans la session
     let session = await Session.findById(_idsessionmodify)
 
     // Copie tous les élèves présents dans la session 
     var eleves = session.eleve
-    
+
     // Supprime les élèves voulu dans la liste copiée
     for (let i = 0; i < del_eleves.length; i++) {
-        for (let j = 0; j < session.eleve.length; j++) {          
-            if (Object.keys(session.eleve[j])[0]==del_eleves[i]) {
-                eleves.splice(j,1)
-            }}}
+        for (let j = 0; j < session.eleve.length; j++) {
+            if (Object.keys(session.eleve[j])[0] == del_eleves[i]) {
+                eleves.splice(j, 1)
+            }
+        }
+    }
 
     // Met à jour la liste des élèves dans la BDD
     await Session.findByIdAndUpdate(_idsessionmodify, {
         eleve: eleves
     })
-    
+
     // Renvoie un statut 200 pour dire que tout s'est bien passé
     res.status(200).send()
 }
 
 
 exports.ConnexionToSession = async(req, res) => {
-    const{_idsession, id_co_session, mdp_session} = req.body
-    
+    const { _idsession, id_co_session, mdp_session } = req.body
+
     let session = await Session.findById(_idsession)
 
     let id_correct = false
-    
+    console.log(session)
 
+    try {
+        for (let i = 0; i < session.eleve.length; i++) {
+            // Vérifie si l'identifiant est dans la liste
+            if (Object.keys(session.eleve[i])[0] == id_co_session) {
+                // Si identifiant est correct, variable mise à true pour dire que l'identifiant est bien dans la liste
+                id_correct = true
+
+                // Vérifie si le mdp correspond
+                if ((Object.values(session.eleve[i]))[0] == mdp_session) {
+
+                    // Renvoie un statut 200 pour dire que tout s'est bien passé
+                    res.status(200).json({ message: "Connexion réussie" })
+
+                } else {
+                    // Renvoie un statut 210 pour dire qu'il y a une erreur
+                    res.status(210).json({ message: "Mot de passe incorrect" })
+                }
+            }
+
+        }
+        // Si l'identifiant est incorrect
+        if (id_correct == false) {
+            // Renvoie un statut 210 pour dire qu'il y a une erreur
+            res.status(210).json({ message: "Identifiant incorrect" })
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+exports.ViewSessions = async(req, res, next) => {
+    // Récupère les infos transmises
+    const { _idprof } = res.locals
+
+    // Cherche le prof et ses sessions
+    let prof = await User.findById(_idprof)
+    const sessions = prof.sessions
+    let infos_sessions = []
+    let eleves = []
+
+    // Parcours les sessions du prof et copie toutes les données dans infos_sessions
+    for (let i = 0; i < sessions.length; i++) {
+        let current_session = await Session.findById(sessions[i])
+        try {
+            for (let j = 0; j < current_session.eleve.length - 1; j++) {
+                eleves.push({ "eleve": current_session.eleve[j] })
+            }
+
+            let infos_json = { "nom": current_session.nom, "eleve": eleves }
+            infos_sessions.push(infos_json)
+            eleves = []
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+
+    // Renvoie un statut 200 et les infos des sessions du prof 
+    res.status(200).send(infos_sessions)
+}
+
+exports.SaveResultatsEleve = async(req, res) => {
+    // Récupère les infos transmises
+    const { filiere, spes, _idsession, id_co_session, mdp_session } = req.body
+
+    // Cherche la session ciblée
+    let session = await Session.findById(_idsession)
+
+    // Créer une liste pour mettre à jour celle de la session
+    let eleve = []
+
+    // Date et heure
+    var now = new Date()
+    let month = now.getMonth() + 1
+    let date = String(now.getDate() + "/" + month + "/" + now.getFullYear())
+
+    // Parcours session et met a jour l'eleve concerné 
     for (let i = 0; i < session.eleve.length; i++) {
-        // Vérifie si l'identifiant est dans la liste
-        if (Object.keys(session.eleve[i])[0] == id_co_session){
-            // Si identifiant est correct, variable mise à true pour dire que l'identifiant est bien dans la liste
-            id_correct = true
 
-            // Vérifie si le mdp correspond
-            if (String(Object.values(session.eleve[i])) == mdp_session){
+        if (Object.keys(session.eleve[i])[0] == id_co_session && String(Object.values(session.eleve[i])) == mdp_session) {
+            eleve.push({
 
-                // Renvoie un statut 200 pour dire que tout s'est bien passé
-                res.status(200).json({message : "Connexion réussie"})
+                [id_co_session]: mdp_session,
+                "date": date,
+                "horaire": now.getHours() + ":" + now.getMinutes(),
+                "filiere": filiere,
+                "spes": spes
+            })
+        } else {
+            eleve.push(session.eleve[i])
+        }
 
-            }else{
-                // Renvoie un statut 210 pour dire qu'il y a une erreur
-                res.status(210).json({message : "Mot de passe incorrect"})
-            }}
-            
     }
-    // Si l'identifiant est incorrect
-    if (id_correct == false) {
-        // Renvoie un statut 210 pour dire qu'il y a une erreur
-        res.status(210).json({message : "Identifiant incorrect"})
-    }
+    // Met à jour la session du prof
+    await Session.findByIdAndUpdate(_idsession, { eleve: eleve })
+
+    // Renvoie un statut 200 pour dire que tout s'est bien passé
+    res.status(200).send()
+}
+
+exports.SendStats = async(req, res) => {
+    const { _idsession_stats } = req.body
+
+    let session = await Session.findById(_idsession_stats)
+
+    let eleve = session.eleve
 }
 
 /* A mettre dans le body pour réussir à faire marcher les fonctions : 

@@ -65,10 +65,23 @@ export default function App() {
 	}
 
 
+<<<<<<< HEAD
 	const scrore = new Cookies();					// import la fonction cookie
 
 
 	const STI2DPDF = String(scrore.get('Resultat').Sti)				//reprends le resultat du questionnaire des spe grace au cookie
+=======
+	const test = () => {
+		console.log('nhdfzj')
+	}
+
+
+
+	const scrore = new Cookies();
+	console.log(scrore.get('Resultat').general)
+
+	const STI2DPDF = String(scrore.get('Resultat').Sti)
+>>>>>>> 9c46ac1820d6b3fec66d44390584bccd81b90b8b
 	const Genralpdf= String(scrore.get('Resultat').general)
 	const St2spdf = String(scrore.get('Resultat').St2s)
 	const NSIpdf = String( Math.round((scoreNSI/11)*100))
@@ -139,11 +152,16 @@ export default function App() {
 
 
 
+
 	return (
 		
 		<div className='app-general'>
 			
+<<<<<<< HEAD
 			{montrerscore? (					//si questionnaire fini afficher resultat
+=======
+			{montrerscore ? (
+>>>>>>> 9c46ac1820d6b3fec66d44390584bccd81b90b8b
 				<div className='score-section'>
 					<Link to='/'>
 						<img className='logo' src={logo} alt="logo" />				{/* renvoie a la page d'aceuil si logo cliquer*/}
@@ -170,12 +188,18 @@ export default function App() {
                             <div className='resultat-filliere-scorre-G'>HLP : {Math.round((scoreHLP/3)*100)}%</div>
                             <div className='resultat-filliere-scorre-G'>SVT : {Math.round((scoreSVT/2)*100)}%</div>
                             <div className='resultat-filliere-scorre-G'>HGGSP : {Math.round((scoreHGGSP/6)*100)}%</div>
+							<div className='resultat-filliere-scorre-G'>TEST : %</div>
 						</div>
 					</div>
 					<button className='bouton-recomencer'><Link to='/app'>						{/* renvoie le premier questionnaire affin de reccomencer*/}
 						Recommencer
 						</Link></button>
+<<<<<<< HEAD
 						<button className ='telechargerpdfgeneral' onClick={genpdf}> Download</button>	{/* boutton pour telecharger le pdf crrer avec 'genpdf' */}
+=======
+						<button className ='telechargerpdfgeneral' onClick={genpdf}> Download</button>
+
+>>>>>>> 9c46ac1820d6b3fec66d44390584bccd81b90b8b
 				</div>
 			) : (	//sinon montrer le questionnaire
 				<>

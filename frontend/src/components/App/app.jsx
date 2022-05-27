@@ -76,9 +76,6 @@ export default function App() {
 		doc.text("%", 190, 90);
 
 
-
-
-
 		doc.text("Merci d'avoir utilisé SchoolChoice", 10, 110);
 
 		doc.save('resultat-SchoolChoice.pdf')

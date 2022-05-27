@@ -19,7 +19,7 @@ class ProfApp extends Component {
     render() {
       return (
         <div className='leftbarr'>
-            <img className='logo' src={Logo} />
+            <img className='leftbarr-logo' src={Logo} />
             <Link to='/appProf/vos_sessions' className='onglet'>
               Vos sessions
             </Link>

@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+.app_eleve_connexion {
+    background-color: #015958;
+    display: flex;
+    height: 20vh;
+    width: 20%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.app_titre_connexion {
+    color: #ffffff;
+    text-align: center;
+}
+
+body {
+    background-color: #D9D9D9;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lilita One', cursive;
+}
+
+.menu {
+    width: 100%;
+    height: 100vh;
+    background-color: #015958;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boxtitre {
+    height: 40%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vw;
+}
+
+.box-filliere {
+    height: 50%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.boutton {
+    height: 20%;
+    width: 40%;
+    border: none;
+    cursor: pointer;
+    background-color: #D8FFDB;
+    font-family: 'Lilita One', cursive;
+    font-size: 2.3vw;
+    border-radius: 15px;
+}

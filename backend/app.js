@@ -6,9 +6,15 @@ const cors = require('cors')
 const mongoose = require('mongoose');
 require('dotenv').config();
 const QCM = require('./qcm.json')
-    // import User controllers
+
+// import User controllers
 const { CreateAccount, ConnexionAccount } = require('./controllers/user')
-const { CreateSession, DeleteSession, ModifySessionName, AddEleveToSession, DelEleveToSession, ConnexionToSession } = require('./controllers/sessions')
+
+// import Session controllers
+const { CreateSession, DeleteSession, ModifySessionName, AddEleveToSession, DelEleveToSession, ConnexionToSession, ViewSessions, SaveResultatsEleve } = require('./controllers/sessions')
+
+// import auth controller
+const { auth } = require('./controllers/auth')
 
 const jwt = require('jsonwebtoken');
 
@@ -47,25 +53,14 @@ app.use('/qcm', (req, res, next) => {
     res.status(200).send(QCM.Specialitees)
 })
 
-function generateP(length) {
-    let pass = '';
-    const str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
-        'abcdefghijklmnopqrstuvwxyz0123456789#$';
-
-    for (let i = 1; i <= length; i++) {
-        let char = Math.floor(Math.random() * str.length + 1);
-        pass += str.charAt(char)
-    }
-
-    return pass
-}
-
-app.use('/create_session', CreateSession)
-app.use('/delete_session', DeleteSession)
+app.use('/create_session', auth, CreateSession)
+app.use('/delete_session', auth, DeleteSession)
 app.use('/modify_session_name', ModifySessionName)
 app.use('/add_eleve_to_session', AddEleveToSession)
 app.use('/del_eleve_to_session', DelEleveToSession)
 app.use('/connexion_to_session', ConnexionToSession)
+app.use('/view_sessions', auth, ViewSessions)
+app.use('/save_resultats', SaveResultatsEleve)
 
 app.use('/auth', (req, res, next) => {
     const token =
@@ -83,7 +78,7 @@ app.use('/auth', (req, res, next) => {
                 res.status(401).send({ error: "invalide token" });
             } else {
                 // si les cookie sont validé, passé à la prochaine fonction grâce à "next()"
-                req._id = decoded._id;
+                req._idprof = decoded.userId
                 res.sendStatus(200)
             }
         });
