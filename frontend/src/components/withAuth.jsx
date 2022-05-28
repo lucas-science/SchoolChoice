@@ -18,7 +18,7 @@ export default function withAuth(ComponentToProtect) {
     componentDidMount() {
         const cookies = new Cookies();
         const token = cookies.get('token')
-        axios.post('http://localhost:4000/auth',{
+        axios.post(process.env.REACT_APP_URL+'/auth',{
             token: token  
         }).then(res => {
             console.log(res)

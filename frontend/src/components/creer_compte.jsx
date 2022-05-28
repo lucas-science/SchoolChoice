@@ -39,7 +39,7 @@ class CreerCompte extends Component {
     Submit = (event) => {
         event.preventDefault();
         console.log("state", this.state)
-        axios.post('http://localhost:4000/create_account',{
+        axios.post(process.env.REACT_APP_URL+'/create_account',{
           email:this.state.email,
           nom:this.state.nom,
           prenom:this.state.prenom,

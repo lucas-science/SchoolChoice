@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import axios from "axios"
+
 import Cookies from 'universal-cookie';
 import './connexion.css'
 import {Link} from 'react-router-dom'
 
 class ConnexionAccount extends Component {
     // différente route renvoyant un composant react
+    
     constructor(props){
         super(props)
 
@@ -37,7 +39,7 @@ class ConnexionAccount extends Component {
     Submit = (event) => {
         event.preventDefault();
         console.log("state", this.state)
-        axios.post('http://localhost:4000/connexion',{
+        axios.post(process.env.REACT_APP_URL+'/connexion',{
           email:this.state.email,
           mdp:this.state.mdp
         }).then(async res => {

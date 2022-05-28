@@ -69,7 +69,7 @@ export default function AppAvecLien() {
 
     const ConnexionEleve = () =>  {
         console.log(Formulaire.name, Formulaire.mdp)
-        axios.post('http://localhost:4000/connexion_to_session',{
+        axios.post(process.env.REACT_APP_URL+'/connexion_to_session',{
             _idsession: id,
             id_co_session : Formulaire.name,
             mdp_session: Formulaire.mdp
