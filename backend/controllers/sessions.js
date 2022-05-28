@@ -1,6 +1,6 @@
 let express = require('express')
-const User = require("../models/user")
-const Session = require("../models/Session")
+const User = require("../models/user.js")
+const Session = require("../models/session.js")
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
