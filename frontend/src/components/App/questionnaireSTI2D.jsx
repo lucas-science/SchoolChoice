@@ -5,10 +5,10 @@ const questions = [
 
 
 	{
-		questiontexte:  "Etes-vous attiré par l’architecture ?",
+		questiontexte:  "Etes-vous attiré par l’architecture ?",		// questionn a afficher
 		reponse: [
-            { reponsetexte: <img className='coeur' src={coeur} alt="oui"/> , filiere : ["AC"]},
-            { reponsetexte: <img className='croix' src={croix} alt="non"/>, filiere : [	]},
+            { reponsetexte: <img className='coeur' src={coeur} alt="oui"/> , filiere : ["AC"]},		// resultat a augmenter si coeur est cliquer
+            { reponsetexte: <img className='croix' src={croix} alt="non"/>, filiere : [	]},				// resultat a augmenter si croix est cliquer 
 		],
 	},
     {

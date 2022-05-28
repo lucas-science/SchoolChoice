@@ -5,10 +5,10 @@ const questions = [
 
 
 	{
-		questiontexte:  "Etes vous une personne travailleuse et serait tu prêt à travailler davantage ?",
+		questiontexte:  "Etes vous une personne travailleuse et serait tu prêt à travailler davantage ?",	// questionn a afficher
 		reponse: [
-            { reponsetexte: <img className='coeur' src={coeur} alt="oui"/> , filiere : ["proGENERAUX"]},
-            { reponsetexte: <img className='croix' src={croix} alt="non"/>, filiere : [	]},
+            { reponsetexte: <img className='coeur' src={coeur} alt="oui"/> , filiere : ["proGENERAUX"]},		// resultat a augmenter si coeur est cliquer 
+            { reponsetexte: <img className='croix' src={croix} alt="non"/>, filiere : [	]},					// resultat a augmenter si croix est cliquer 
 		],
 	},
 
