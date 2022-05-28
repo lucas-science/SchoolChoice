@@ -82,7 +82,7 @@ class CreerSession extends Component {
         this.setState({isCopied:false})
       }
       handleCopyClick = async () => {
-        const text = 'https://school-choice.vercel.app//app/'+this.state.session_id
+        const text = 'http://localhost:3000'+ '/app/' +this.state.session_id
         if ('clipboard' in navigator) {
           await navigator.clipboard.writeText(text);
           this.MessageCopyClicked()
@@ -168,14 +168,14 @@ class CreerSession extends Component {
       for(let i of this.state.FinalEleve){
         FileExcel.push(i)
       }
-
+      console.log(process.env)
       return (
         <div className='app_body'>
           <div className="formulaire">
             { Created ?(
               <div className='session_created'>
               <div className='creer_session_copybox'>
-                <input type="text" className='copyValue' value={'https://school-choice.vercel.app/app/'+this.state.session_id}></input>
+                <input type="text" className='copyValue' value={process.env.REACT_APP_CLIENT_URL+this.state.session_id}></input>
                 <input type="button" className='copyValue_btn' value={this.state.isCopied ? ("Copied !"):("Copy")} onClick={this.handleCopyClick}/>
               </div>
                 <table className='create-session-table'>

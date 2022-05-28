@@ -1,0 +1,34 @@
+.view_session_container {
+    width: 90%;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 50px;
+    overflow-y: auto;
+}
+
+.session {
+    background-color: #0159582f;
+    padding: 15px;
+    border: 5px solid #015958cb;
+    border-radius: 5px;
+}
+
+.session_eleves {
+    padding-left: 10px;
+}
+
+.titre_session {
+    font-size: 18px;
+}
+
+.eleve {
+    color: rgba(0, 0, 0, 0.774);
+}
+
+.session_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
