@@ -19,6 +19,7 @@ class ProfApp extends Component {
     render() {
       return (
         <div className='leftbarr'>
+          {/* Menu avec les différent fonction aevc les quel les professeurs peuvent s'y rendre */}
             <img className='leftbarr-logo' src={Logo} />
             <Link to='/appProf/vos_sessions' className='onglet'>
               Vos sessions

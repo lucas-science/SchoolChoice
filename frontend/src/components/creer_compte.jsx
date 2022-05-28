@@ -17,10 +17,13 @@ class CreerCompte extends Component {
             error_message:''
         }
     }
+
+      // fonction qui permet de faire un temps de pause
    sleep = (ms) => {
       return new Promise(resolve => setTimeout(resolve, ms));
    }
 
+      // fonction qui  permet d'afficher un texte donné, durant un temps donné
    DisplayMessageFewTime =  (Time, StateToChange, ValueAfter, ValueBefore) => {
      return new Promise(async resolve => {
         this.setState({[StateToChange]:ValueAfter})
@@ -29,6 +32,9 @@ class CreerCompte extends Component {
         resolve()
      })
    }
+
+
+    // modifié un "state" avec sa valeur, lorsque la valeur d'un champs de texte est modifié
     handleInputChange = (event) => {
         const { value, name } = event.target;
         this.setState({
@@ -36,6 +42,8 @@ class CreerCompte extends Component {
         });
       }
     
+
+          // envoyer une requête au serveur pour essayer de se creer un compte
     Submit = (event) => {
         event.preventDefault();
         console.log("state", this.state)

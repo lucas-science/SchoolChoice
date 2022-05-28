@@ -30,11 +30,12 @@ class CreerSession extends Component {
       this.setState({changed:true})
 
     }
-
+      // fonction qui permet de faire un temps de pause
     sleep = (ms) => {
         return new Promise(resolve => setTimeout(resolve, ms));
      }
   
+        // fonction qui  permet d'afficher un texte donné, durant un temps donné
      DisplayMessageFewTime =  (Time, StateToChange, ValueAfter, ValueBefore) => {
        return new Promise(async resolve => {
           this.setState({[StateToChange]:ValueAfter})
@@ -43,6 +44,8 @@ class CreerSession extends Component {
           resolve()
        })
      }
+
+       // modifié un "state" avec sa valeur, lorsque la valeur d'un champs de texte est modifié
       handleInputChange = (event) => {
         const { value, name } = event.target;
         this.setState({
@@ -50,6 +53,7 @@ class CreerSession extends Component {
         });
       }
 
+      // ajouter un élève à la liste
       addName = (event) => {
         event.preventDefault();
         if(this.state.eleve){
@@ -59,6 +63,7 @@ class CreerSession extends Component {
         }
       }
 
+      // suprimer un élève de la liste
       deleteName = (event) => {
         event.preventDefault();
         const index = event.target.key
@@ -67,6 +72,7 @@ class CreerSession extends Component {
         this.setState({changed:true})
       }
 
+      // vérifier si le formulaire est correctement complété
       isValidForm = (list_eleve, SessionName, NombreEleve) => {
         if(list_eleve != [] && SessionName != "" && NombreEleve > 0 && Number(NombreEleve) == list_eleve.length){
           return true
@@ -75,12 +81,15 @@ class CreerSession extends Component {
         }
       }
 
+      // fonction qui permet de copier dans la peresse à papier le texte voulu
       MessageCopyClicked = async () => {
         console.log("copied")
         this.setState({isCopied:true})
         await this.sleep(1000)
         this.setState({isCopied:false})
       }
+
+      // fonction qui permet d'appler la fonction pour copier le texte, lorsqu'on clique sur le bouton
       handleCopyClick = async () => {
         const text = 'http://localhost:3000'+ '/app/' +this.state.session_id
         if ('clipboard' in navigator) {
@@ -90,9 +99,9 @@ class CreerSession extends Component {
           document.execCommand('copy', true, text);
           this.MessageCopyClicked()
         }
-
       }
 
+      // envoyer une requête comportant l'ensemble des donnée du formulaire rempli correctement
       SubmitForm = async (event) => {
         event.preventDefault();
         const {list_eleve,SessionName,NombreEleve} = this.state
@@ -128,6 +137,7 @@ class CreerSession extends Component {
         this.setState({NombreEleve:0})
       }
 
+      // creer un fichier Excel téléchargeable 
       exportToCSV = (Data, fileName) => {
         const ws = XLSX.utils.json_to_sheet(Data);
         const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
@@ -224,9 +234,7 @@ class CreerSession extends Component {
                 </div>
               </>
             )
-
             }
-
           </div>
         </div>
       );

@@ -54,10 +54,12 @@ export default function AppAvecLien() {
         Sti: Math.round((scoreSTI2D/6)*100),
         St2s: Math.round((scoreST2S/7)*100)
     }))
+    // fonction qui permet de faire une pause de X temps
     const sleep = (ms) => {
         return new Promise(resolve => setTimeout(resolve, ms));
      }
 
+  // modifié un "state" avec sa valeur, lorsque la valeur d'un champs de texte est modifié
     const handleInputChange = (event) => {
         const { value, name} = event.target
         if(name === "name"){
@@ -67,6 +69,8 @@ export default function AppAvecLien() {
         }
     }
 
+
+    // fonction qui permet de faire une requête afin de permettre à un élève de se connecter à une session
     const ConnexionEleve = () =>  {
         console.log(Formulaire.name, Formulaire.mdp)
         axios.post(process.env.REACT_APP_URL+'/connexion_to_session',{
@@ -79,7 +83,7 @@ export default function AppAvecLien() {
             if (status === 200){
                 setConnected(true)
                 cookies.set('connected', true)
-                cookies.set('mdp', Formulaire.mdp)
+                cookies.set('mdp', Formulaire.mdp) // ajouter l'id de l'élève connecté afin qu'on puisse dans le futur l'identifier
             } else{
                 setErrorMessage(data.message)
                 await sleep(1500)
@@ -92,6 +96,7 @@ export default function AppAvecLien() {
     return (
         
         <div className='app'>
+            {/* Afficher la boite de dialogue avant que l'élève veuillent commencer le questionnaire, pour qu'il se connnecte avant */}
             {!Connected ?(
                 <div className="app_eleve_connexion">
                     <p className='app_titre_connexion'>Connecte toi à la session de ton professeur : </p>

@@ -92,7 +92,7 @@ exports.ConnexionAccount = async(req, res, next) => {
                                 message: 'Incorrect password'
                             });
                     } else {
-                        // si mot de passe correct, création de la session
+                        // si mot de passe correct, création de la session et renvois le TOKEN
                         const token = jwt.sign({ userId: user._id }, process.env.JSW_SECRET, {
                             expiresIn: '1h'
                         });

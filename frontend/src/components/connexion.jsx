@@ -17,10 +17,13 @@ class ConnexionAccount extends Component {
             error_message:''
         }
     }
+
+  // fonction qui permet de faire un temps de pause
    sleep = (ms) => {
       return new Promise(resolve => setTimeout(resolve, ms));
    }
 
+   // fonction qui  permet d'afficher un texte donné, durant un temps donné
    DisplayMessageFewTime =  (Time, StateToChange, ValueAfter, ValueBefore) => {
      return new Promise(async resolve => {
         this.setState({[StateToChange]:ValueAfter})
@@ -29,13 +32,17 @@ class ConnexionAccount extends Component {
         resolve()
      })
    }
+
+   // modifié un "state" avec sa valeur, lorsque la valeur d'un champs de texte est modifié
     handleInputChange = (event) => {
         const { value, name } = event.target;
         this.setState({
           [name]: value
         });
       }
-    
+
+
+    // envoyer une requête au serveur pour essayer de se connecter
     Submit = (event) => {
         event.preventDefault();
         console.log("state", this.state)
@@ -47,10 +54,10 @@ class ConnexionAccount extends Component {
           if (status === 200){
             const cookies = new Cookies();
  
-            cookies.set('token', data.token, { path: '/' });
+            cookies.set('token', data.token, { path: '/' });  // si connecter creer le cookie "TOKEN" et envoyer l'utilisateur à la page home. 
             this.props.history.push('/');
           } else {
-            await this.DisplayMessageFewTime(2000, "error_message", data.message, "")
+            await this.DisplayMessageFewTime(2000, "error_message", data.message, "") // si pas réussie à se connecter donc afficher le message d'erreur
           }
         })
         .catch(err => console.log(err))

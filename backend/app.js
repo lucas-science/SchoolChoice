@@ -4,7 +4,10 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
 const cors = require('cors')
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
+
+// récupérer le questionnaire
 const QCM = require('./qcm.json')
 
 // import User controllers
@@ -16,7 +19,7 @@ const { CreateSession, DeleteSession, ModifySessionName, AddEleveToSession, DelE
 // import auth controller
 const { auth } = require('./controllers/auth')
 
-const jwt = require('jsonwebtoken');
+
 
 // initialisation body parser pour récupérer donné au format json
 app.use(bodyParser.json());
@@ -44,15 +47,15 @@ mongoose.connect(db_url, {
 
 // Différentes routes reliées aux différentes fonctions 
 app.use('/create_account', CreateAccount)
-
 app.use('/connexion', ConnexionAccount)
 
 
-
+// renvoyer le qcm 
 app.use('/qcm', (req, res, next) => {
     res.status(200).send(QCM.Specialitees)
 })
 
+// ensemble des fonction, fonction "auth" pour décrypter le Token, représentant l'ID du professeur
 app.use('/create_session', auth, CreateSession)
 app.use('/delete_session', auth, DeleteSession)
 app.use('/modify_session_name', ModifySessionName)
@@ -62,6 +65,7 @@ app.use('/connexion_to_session', ConnexionToSession)
 app.use('/view_sessions', auth, ViewSessions)
 app.use('/save_resultats', SaveResultatsEleve)
 
+// fonction qui permet de savoir si la personne est un professeur ou non (si il possède donc un TOKEN valide)
 app.use('/auth', (req, res, next) => {
     const token =
         req.body.token ||

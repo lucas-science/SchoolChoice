@@ -24,6 +24,7 @@ class ProfApp extends Component {
     render() {
       return (
           <Router >
+                    {/* On affiche le pannel de contrôle des professeur avec les différentes fonction, avec lesquelles ils peuvent intérargir */}
             <div className="app_prof">
               <LeftBarr/>
               <Switch>

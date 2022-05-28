@@ -14,7 +14,7 @@ export default function withAuth(ComponentToProtect) {
       };
     }
 
-    // fait une requête POST au chemin "http://localhost:4000/auth" pour vérifier si les cookie sont valide
+    // fait une requête POST au chemin "http://XXXXXX/auth" pour vérifier si les cookie sont valide
     componentDidMount() {
         const cookies = new Cookies();
         const token = cookies.get('token')
@@ -25,9 +25,9 @@ export default function withAuth(ComponentToProtect) {
             if (res.status === 200) {
             // si les cookies sont valide
               console.log("les cookie sont la ")
-              this.setState({ loading: false });
+              this.setState({ loading: false });// on autorise l'utilisateur à se rendre sur la partie de l'application qui lui est réservé
             } else {
-              const error = new Error(res.error);
+              const error = new Error(res.error); 
               throw error;
             }
         })

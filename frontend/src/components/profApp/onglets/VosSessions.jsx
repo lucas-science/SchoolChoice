@@ -12,6 +12,8 @@ class VosSessions extends Component {
           list_sessions:[]
         }
       }
+
+      // fonction qui permet de récuper l'ensemble des sessions d'un professeur, dès qu'on charge la page
       componentDidMount(){
         const cookies = new Cookies()
         axios.post(process.env.REACT_APP_URL + '/view_sessions',{
@@ -21,7 +23,7 @@ class VosSessions extends Component {
           const {data,status} = res
           if(status === 200){
             console.log(data)
-            this.setState({list_sessions:data})
+            this.setState({list_sessions:data}) // on stocke l'ensemble des sessions
 
           } else {
             console.log("erreur")
@@ -34,7 +36,8 @@ class VosSessions extends Component {
       return (
         <div class="app_body">
           <div className='view_session_container'>
-            {list_sessions.map(session => (
+            {/* On liste l'ensemble des sessions disponible sous frome d'une GRID */}
+            {list_sessions.map(session => ( 
               <div className='session'>
                 <div className="session_head">
                   <p className='titre_session'>{session.nom}</p>
