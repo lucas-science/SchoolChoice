@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Routes, Route, Switch} from "react-router-dom";
 import axios from "axios"
 import Cookies from 'universal-cookie';
 import LeftBarr from './leftbarr'
+import withAuth from '../withAuth';
 
 // import onglets
 import CreerSession from './onglets/CreerSession'
@@ -17,7 +18,7 @@ class ProfApp extends Component {
     constructor(props){
         super(props)
         this.state = {
-
+ 
         }
       }
 
@@ -28,9 +29,9 @@ class ProfApp extends Component {
             <div className="app_prof">
               <LeftBarr/>
               <Switch>
-                <Route path="/appProf/vos_sessions" component={VosSessions}></Route>
-                <Route path="/appProf/creer_session" component={CreerSession}></Route>
-                <Route path="/appProf/vos_statistiques" component={VosStatistiques}></Route>
+                <Route path="/appProf/vos_sessions" component={withAuth(VosSessions)}></Route>
+                <Route path="/appProf/creer_session" component={withAuth(CreerSession)}></Route>
+                <Route path="/appProf/vos_statistiques" component={withAuth(VosStatistiques)}></Route>
               </Switch>
             </div>
           </Router>
