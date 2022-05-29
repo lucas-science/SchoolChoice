@@ -20,7 +20,7 @@ class Home extends Component {
               <Link className='lien-home' to='/app'>
                 APP
               </Link>
-              <Link  className='lien-home' to='/appProf'>
+              <Link  className='lien-home' to='/appProf/vos_sessions'>
                 APP PROF
               </Link>
               <Link className='lien-home' to='/create_account'>
